@@ -19,11 +19,25 @@
     width: 800px;
 }
 
+/*Every item with alt name starting with "lt_" will be inverted (to make latex white)*/
+img[src="images/normal.png"] {
+    background: #FFFFFF;
+}
+
+div#step-3{
+    font-size: 150%;
+}
 
 
 * {
     font-family: "Neutraface 2 Text";
   }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
   /*table, td, th {
       border: 0.01px solid black;
@@ -31,22 +45,44 @@
 
 /* Help popup */
 
+/*
+098569
+80DBC7
+22FFCD
+B22D00
+FF5A22
+
+*/
+
 td {
     padding: 10px;
+}
+
+h1, strong {
+    color: #B22D00;
+}
+
+h2,em {
+    color: #FF5A22;
+}
+
+h3,p {
+    color: #E0FFF6;
+    
 }
 
 body {
     font-family: 'Neutraface 2 Text', sans-serif;
     min-height: 740px;
     font-size: 120%;
-
-    background: rgb(255,255,255);
-    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(255,255,255)), to(rgb(245,248,255)));
-    background: -webkit-radial-gradient(rgb(255,255,255), rgb(245,248,255));
-    background:    -moz-radial-gradient(rgb(255,255,255), rgb(245,248,255));
-    background:     -ms-radial-gradient(rgb(255,255,255), rgb(245,248,255));
-    background:      -o-radial-gradient(rgb(255,255,255), rgb(245,248,255));
-    background:         radial-gradient(rgb(255,255,255), rgb(245,248,255));
+    color: #E0FFF6;
+    background: rgb(128,219,199);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(128,219,199)), to(rgb(9,133,105)));
+    background: -webkit-radial-gradient(rgb(128,219,199), rgb(9,133,105));
+    background:    -moz-radial-gradient(rgb(128,219,199), rgb(9,133,105));
+    background:     -ms-radial-gradient(rgb(128,219,199), rgb(9,133,105));
+    background:      -o-radial-gradient(rgb(128,219,199), rgb(9,133,105));
+    background:         radial-gradient(rgb(128,219,199), rgb(9,133,105));
 }
 
 #hovercraft-help {

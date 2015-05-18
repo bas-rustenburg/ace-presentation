@@ -4,26 +4,24 @@
 :keywords: exam, ace, phd
 :css: ace.css
 
-.. |theta| image:: images/theta.png
-.. |prior| image:: images/prior.png
-.. |posterior| image:: images/posterior.png
-.. |likelihood| image:: images/likelihood.png
-.. |model| image:: images/model.png
-.. |Bayes| image:: images/bayes_rule.png
-.. |dG| image:: images/dG.png
-.. |dH| image:: images/dH.png
-.. |H0| image:: images/H0.png
-.. |Xs| image:: images/Xs.png
-.. |Mc| image:: images/Mc.png
-.. |sigma| image:: images/sigma.png
-.. |norm| image:: images/norm_n.png
-.. |variance| image:: images/variance.png
+.. |lt_theta| image:: images/colored_theta.png
+.. |lt_prior| image:: images/colored_prior.png
+.. |lt_posterior| image:: images/colored_posterior.png
+.. |lt_likelihood| image:: images/colored_likelihood.png
+.. |lt_model| image:: images/colored_model.png
+.. |lt_Bayes| image:: images/colored_bayes_rule.png
+.. |lt_dG| image:: images/colored_dG.png
+.. |lt_dH| image:: images/colored_dH.png
+.. |lt_H0| image:: images/colored_H0.png
+.. |lt_Xs| image:: images/colored_Xs.png
+.. |lt_Mc| image:: images/colored_Mc.png
+.. |lt_sigma| image:: images/colored_sigma.png
+.. |lt_norm| image:: images/colored_norm_n.png
+.. |lt_variance| image:: images/colored_variance.png
+
+:data-transition-duration: 500
 
 ----
-
-
-
-:id: titleslide
 
 Admission to candidacy exam
 ===========================
@@ -34,8 +32,16 @@ Bas Rustenburg
 Date : tbd
 ..........
 
+.. image:: images/background.png
+  :align: center
+  :width: 800px
+
 ----
 
+:hovercraft-path: M1,5L20,20L40,10L60,40L80,5L100,60
+
+::
+    :hovercraft-path: M600,350 l 50,-25,a25,25 -30 0,1 50,-25 l 50,-25, a25,50 -30 0,1 50,-25 l 50,-25,a25,75 -30 0,1 50,-25 l 50,-25, a25,100 -30 0,1 50,-25 l 50,-25
 
 Alchemical free energy calculations
 ===================================
@@ -67,8 +73,6 @@ Aims
 3. Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.
 
 ----
-
-
 
 Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
 ================================================================================================================
@@ -178,12 +182,12 @@ Develop an accurate approach to quantifying experimental uncertainty in ITC usin
 
 Subaim 1.1
 ----------
-The experimental parameters, |theta| , can be estimated using Bayes rule:
-|Bayes| , where
+The experimental parameters, |lt_theta| , can be estimated using Bayes rule:
+|lt_Bayes| , where
 
-  - |posterior| is the posterior distribution. The probability of the parameters given the observed data. *This is what we want to know!*
-  - |likelihood| is the likelihood. The probability of the observed data, given a single set of parameters.
-  - |prior| are distributions containing prior information. We can use this to propagate errors.
+  - |lt_posterior| is the posterior distribution. The probability of the parameters given the observed data. *This is what we want to know!*
+  - |lt_likelihood| is the likelihood. The probability of the observed data, given a single set of parameters.
+  - |lt_prior| are distributions containing prior information. We can use this to propagate errors.
 
 
 We can sample from the posterior distribution by using a technique called *Markov chain Monte Carlo*.
@@ -193,7 +197,7 @@ We can sample from the posterior distribution by using a technique called *Marko
 Bayes rule in effect
 ====================
 
-We apply |Bayes| for a value centered around zero,
+We apply |lt_Bayes| for a value centered around zero,
 with prior information that it is between -1 and 1, uniformly distributed.
 
 
@@ -232,18 +236,18 @@ Subaim 1.1
 The ITC model structure
 .......................
 
-.. image:: images/parameters.png
+.. image:: images/colored_parameters.png
   
 Thermodynamic parameters include
   
-  - binding affinity, |dG|
-  - enthalpy of binding, |dH|
-  - mechanical heats offset, |H0|
-  - concentration of syringe component, |Xs|
-  - concentration of cell component, |Mc|
-  - noise parameter, |sigma|
+  - binding affinity, |lt_dG|
+  - enthalpy of binding, |lt_dH|
+  - mechanical heats offset, |lt_H0|
+  - concentration of syringe component, |lt_Xs|
+  - concentration of cell component, |lt_Mc|
+  - noise parameter, |lt_sigma|
 
-We can use prior distributions |prior| to propagate error estimates in concentrations, and include previous measurements.
+We can use prior distributions |lt_prior| to propagate error estimates in concentrations, and include previous measurements.
 
 
 ----
@@ -258,13 +262,13 @@ Subaim 1.1
 The ITC model structure
 .......................
 
-+--------------------------------------------------------------+-----------------------------------------+
-| The likelihood model, |likelihood|, is defined as            | .. image:: images/normal.png            |
-|                                                              |   :height: 350px                        |
-| .. image:: images/model.png                                  |                                         |
-+--------------------------------------------------------------+-----------------------------------------+
-| Where the observed heats are sampled from a normal distribution |norm|, with a variance of |variance|. |
-+--------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------+-----------------------------------------------+
+| The likelihood model, |lt_likelihood|, is defined as         | .. image:: images/normal.png                  |
+|                                                              |   :height: 350px                              |
+| .. image:: images/colored_model.png                          |                                               |
++--------------------------------------------------------------+-----------------------------------------------+
+| Where the observed heats are sampled from a normal distribution |lt_norm|, with a variance of |lt_variance|. |
++--------------------------------------------------------------------------------------------------------------+
 
 ----
 
@@ -287,6 +291,94 @@ Next, we will compare to experiment, to see if they produce a quantitatively cor
 This is the first comparison of any of these methods on the same system!
 
 ----
+
+
+Quantify the magnitude of protonation state effects on binding
+==============================================================
+  
+Aim 2.
+------
+
+Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner. Evidence exists that for the binding of imatinib to Abl kinase, pH dependent effects may contribute to the binding affinity, and preliminary data indicates that it is the same for *many other kinase inhibitors*.
+
+
++---------------------------------------+--------------------------------------------+
+| .. image:: images/inhibitor-pKas.png  | .. image:: images/imatinib_image_curve.png |
+|   :width: 400px                       |   :width: 400px                            |
++---------------------------------------+--------------------------------------------+
+
+
+----
+
+Quantify the magnitude of protonation state effects on binding
+==============================================================
+  
+Aim 2.
+------
+
+Subaim 2.1: Benchmark small molecule pKa prediction tools against experimental data for kinase inhibitors.
+..........................................................................................................
+We need reliable pKa estimates of small molecule kinase inhibitors. We will benchmark available tools and compare to experimental data.
+
+
+Subaim 2.2: Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.
+.........................................................................................................................
+We will identify kinase-inhibitor systems that show changes in the populations of protonation states from MCCE calculations.
+
+Subaim 2.3: Dissect the determinants and impact of protonation state effects on binding affinity through free energy calculations and ITC experiments.
+......................................................................................................................................................
+The systems identified will be simulated using alchemical free energy calculations, and we will perform ITC experiments on them.
+ 
+----
+
+Benchmark small molecule pKa prediction tools against experimental data for kinase inhibitors.
+==============================================================================================
+
+Subaim 2.1
+----------
+
+We will consider a variety of tools that are capable of predicting small molecule pKa data.
+
+* **MoKa** generates pKa s based on atomistic descriptors, defined by the surrounding atoms. The descriptors are based on molecular interaction fields calculated using GRID for a library of 3D fragments, but can successfully be applied on 2D structures.
+ 
+* Schrodinger’s **Jaguar** provides means of estimating pKa values using quantum mechanical methods.
+ 
+* **Epik** uses Hammett Taft linear free energy approaches [86] for predicting pKa values.
+
+The results provided by these tools will be compared against available pKa data from a Sirius T3 instrument. We have already measured the pKa of several of these inhibitors. For the sake of having a completely computational framework to perform these calculations, we would like to find a reliable predictor.
+
+
+----
+
+Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.
+=============================================================================================================
+
+Subaim 2.2
+----------
+
+We will investigate complex structures from the protein databank, using a framework called MCCE.
+
+.. image:: images/imatinib_sites.png
+  :width: 800px
+  
+
+----
+
+Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.
+=============================================================================================================
+
+MCCE samples multiple conformations of protein side-chains and estimates the most probably protonation state.
+The framework has been extended to incorporate sampling of ligands. We will keep ligand conformations fixed to those found in crystal structures.
+
+Subaim 2.2
+----------
+  
+.. image:: images/mcce2_sharp.png
+  :width: 400px
+
+----
+
+
 
 That's all folks!
 =================
