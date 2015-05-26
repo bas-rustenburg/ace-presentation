@@ -1,75 +1,111 @@
-/* This file left intentionally (almost) blank
+/* Presentation style sheet */
+/* color theme */
+.impress-supported .fallback-message {
+  display: none; }
 
-   Landslide always adds a print.css and a screen.css, but they
-   are not needed in impress.js, so this theme leaves them blank,
-   except for hiding some things you want to hide.
+.highlight.code.python {
+  background: #FEFEFE; }
 
-   You can modify these files in your own fork, or you can add
-   css-files in the landslide configuration file.
-   See https://github.com/adamzap/landslide#presentation-configuration
-
-*/
-
-.impress-supported .fallback-message,
-.step .notes {
-    display: none;
-}
-
-.step {
-    width: 800px;
-}
-
-
-
+/* set the main font */
 * {
-    font-family: "Neutraface 2 Text";
-  }
+  font-family: "Neutraface 2 Text"; }
 
-  /*table, td, th {
-      border: 0.01px solid black;
-  }*/
+/* reflection on the title page */
+div#title img {
+  -webkit-box-reflect: below -5px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.05))); }
 
-/* Help popup */
+/* properties for every slide */
+.step {
+  width: 800px;
+  /*height:600px */ }
+  .step .notes {
+    display: none; }
 
+img[src="images/extinction_mirg.png"], img[src="images/abrf_mirg.png"], img[src="images/normal.png"], img[src="images/alchem_aims.png"], img[src="images/distributions.png"], img[src="images/alchem.png"], img[src="images/imatinib_image_curve.png"], img[src="images/reif_oostenbrink.png"], img[src="images/Kd_guest2.png"] {
+  background: #FFF; }
+
+img[src="images/deshaw2.gif"] {
+  -webkit-box-reflect: below 80px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.05))); }
+
+/*Center table on page */
+table {
+  margin: 0 auto; }
+
+/*center images */
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+/* table spacing between columns */
 td {
-    padding: 10px;
-}
+  padding: 10px;
+  margin: 0 auto; }
+
+h1, strong {
+  color: #fff; }
+
+h1 {
+  /* safari and chrome only */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #efefef; }
+
+h2, em {
+  color: #d5b8d5; }
+
+h3 {
+  color: #FFFECB; }
+
+h4, p {
+  color: #fcfcfc; }
+
+a:link {
+  color: #FFFECB; }
+
+/* visited link */
+a:visited {
+  color: #d5b8d5; }
+
+/* mouse over link */
+a:hover {
+  color: #E8E195; }
+
+/* selected link */
+a:active {
+  color: #828282;
+  background-color: #FEFEFE; }
 
 body {
-    font-family: 'Neutraface 2 Text', sans-serif;
-    min-height: 740px;
-    font-size: 120%;
+  font-family: "Neutraface 2 Text", sans-serif;
+  min-height: 740px;
+  font-size: 140%;
+  color: #fcfcfc;
+  background: #828282;
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#828282), to(#383838));
+  background: -webkit-radial-gradient(#828282, #383838);
+  background: -moz-radial-gradient(#828282, #383838);
+  background: -ms-radial-gradient(#828282, #383838);
+  background: -o-radial-gradient(#828282, #383838);
+  background: radial-gradient(#828282, #383838); }
 
-    background: rgb(255,255,255);
-    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(255,255,255)), to(rgb(245,248,255)));
-    background: -webkit-radial-gradient(rgb(255,255,255), rgb(245,248,255));
-    background:    -moz-radial-gradient(rgb(255,255,255), rgb(245,248,255));
-    background:     -ms-radial-gradient(rgb(255,255,255), rgb(245,248,255));
-    background:      -o-radial-gradient(rgb(255,255,255), rgb(245,248,255));
-    background:         radial-gradient(rgb(255,255,255), rgb(245,248,255));
-}
-
+/* Help popup */
 #hovercraft-help {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
-    color: #EEEEEE;
-    font-size: 100%;
-    left: 2em;
-    bottom: 2em;
-    width: 26em;
-    border-radius: 1em;
-    padding: 1em;
-    position: fixed;
-    right: 0;
-    text-align: center;
-    z-index: 100;
-    display: block;
-    font-family: Verdana, Arial, Sans;
-}
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+  color: #EEEEEE;
+  font-size: 100%;
+  left: 2em;
+  bottom: 2em;
+  width: 26em;
+  border-radius: 1em;
+  padding: 1em;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  z-index: 100;
+  display: block;
+  font-family: Verdana, Arial, Sans; }
 
-.impress-enabled #hovercraft-help.hide {
-    display: none;
-}
+.impress-enabled #hovercraft-help.hide, #hovercraft-help.disabled {
+  display: none; }
 
-#hovercraft-help.disabled {
-    display: none;
-}
+/*# sourceMappingURL=ace.css.map */

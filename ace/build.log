@@ -1,0 +1,95 @@
+line 1 column 727 - Warning: <div> proprietary attribute "step"
+line 1 column 923 - Warning: <img> attribute "width" has invalid value "800px"
+line 1 column 923 - Warning: <img> attribute "height" lacks value
+line 1 column 999 - Warning: <div> proprietary attribute "step"
+line 1 column 1338 - Warning: <img> attribute "width" has invalid value "700px"
+line 1 column 1338 - Warning: <img> attribute "height" lacks value
+line 1 column 1436 - Warning: <div> proprietary attribute "step"
+line 2 column 463 - Warning: <div> proprietary attribute "step"
+line 2 column 834 - Warning: <img> attribute "width" lacks value
+line 2 column 834 - Warning: <img> attribute "height" lacks value
+line 2 column 1640 - Warning: <div> proprietary attribute "step"
+line 2 column 1900 - Warning: <img> attribute "width" lacks value
+line 2 column 1900 - Warning: <img> attribute "height" lacks value
+line 3 column 553 - Warning: <div> proprietary attribute "step"
+line 3 column 1242 - Warning: <div> proprietary attribute "step"
+line 3 column 2290 - Warning: <div> proprietary attribute "step"
+line 3 column 2544 - Warning: <img> attribute "width" has invalid value "200px"
+line 3 column 2544 - Warning: <img> attribute "height" lacks value
+line 3 column 2624 - Warning: <img> attribute "width" has invalid value "200px"
+line 3 column 2624 - Warning: <img> attribute "height" lacks value
+line 3 column 2977 - Warning: <img> attribute "width" has invalid value "410px"
+line 3 column 2977 - Warning: <img> attribute "height" lacks value
+line 3 column 3078 - Warning: <div> proprietary attribute "step"
+line 3 column 3414 - Warning: <img> attribute "width" lacks value
+line 3 column 3414 - Warning: <img> attribute "height" lacks value
+line 4 column 1 - Warning: <img> attribute "width" lacks value
+line 4 column 1 - Warning: <img> attribute "height" lacks value
+line 4 column 114 - Warning: <img> attribute "width" lacks value
+line 4 column 114 - Warning: <img> attribute "height" lacks value
+line 4 column 336 - Warning: <img> attribute "width" lacks value
+line 4 column 336 - Warning: <img> attribute "height" lacks value
+line 4 column 522 - Warning: <img> attribute "width" lacks value
+line 4 column 522 - Warning: <img> attribute "height" lacks value
+line 4 column 827 - Warning: <div> proprietary attribute "step"
+line 4 column 1025 - Warning: <img> attribute "width" lacks value
+line 4 column 1025 - Warning: <img> attribute "height" lacks value
+line 4 column 1170 - Warning: <div> proprietary attribute "step"
+line 4 column 1434 - Warning: <img> attribute "width" lacks value
+line 4 column 1434 - Warning: <img> attribute "height" lacks value
+line 4 column 1584 - Warning: <img> attribute "width" lacks value
+line 4 column 1584 - Warning: <img> attribute "height" lacks value
+line 4 column 1684 - Warning: <img> attribute "width" lacks value
+line 4 column 1684 - Warning: <img> attribute "height" lacks value
+line 4 column 1788 - Warning: <img> attribute "width" lacks value
+line 4 column 1788 - Warning: <img> attribute "height" lacks value
+line 4 column 1903 - Warning: <img> attribute "width" lacks value
+line 4 column 1903 - Warning: <img> attribute "height" lacks value
+line 4 column 2015 - Warning: <img> attribute "width" lacks value
+line 4 column 2015 - Warning: <img> attribute "height" lacks value
+line 4 column 2111 - Warning: <img> attribute "width" lacks value
+line 4 column 2111 - Warning: <img> attribute "height" lacks value
+line 4 column 2244 - Warning: <img> attribute "width" lacks value
+line 4 column 2244 - Warning: <img> attribute "height" lacks value
+line 4 column 2413 - Warning: <div> proprietary attribute "step"
+line 4 column 2737 - Warning: <img> attribute "width" lacks value
+line 4 column 2737 - Warning: <img> attribute "height" lacks value
+line 4 column 2842 - Warning: <img> attribute "width" lacks value
+line 4 column 2842 - Warning: <img> attribute "height" lacks value
+line 4 column 2919 - Warning: <img> attribute "width" lacks value
+line 4 column 2919 - Warning: <img> attribute "height" has invalid value "350px"
+line 4 column 3082 - Warning: <img> attribute "width" lacks value
+line 4 column 3082 - Warning: <img> attribute "height" lacks value
+line 4 column 3179 - Warning: <img> attribute "width" lacks value
+line 4 column 3179 - Warning: <img> attribute "height" lacks value
+line 4 column 3298 - Warning: <div> proprietary attribute "step"
+line 5 column 182 - Warning: <div> proprietary attribute "step"
+line 5 column 878 - Warning: <img> attribute "width" has invalid value "300px"
+line 5 column 878 - Warning: <img> attribute "height" lacks value
+line 5 column 961 - Warning: <img> attribute "width" has invalid value "300px"
+line 5 column 961 - Warning: <img> attribute "height" lacks value
+line 5 column 1073 - Warning: <div> proprietary attribute "step"
+line 5 column 2440 - Warning: <div> proprietary attribute "step"
+line 5 column 3669 - Warning: <div> proprietary attribute "step"
+line 5 column 4093 - Warning: <img> attribute "width" has invalid value "600px"
+line 5 column 4093 - Warning: <img> attribute "height" lacks value
+line 5 column 4173 - Warning: <div> proprietary attribute "step"
+line 6 column 179 - Warning: <img> attribute "width" has invalid value "400px"
+line 6 column 179 - Warning: <img> attribute "height" lacks value
+line 6 column 256 - Warning: <div> proprietary attribute "step"
+line 6 column 1241 - Warning: <div> proprietary attribute "step"
+line 6 column 1410 - Warning: <div> proprietary attribute "step"
+line 6 column 1587 - Warning: <div> proprietary attribute "step"
+line 7 column 161 - Warning: <div> proprietary attribute "step"
+line 7 column 260 - Warning: <div> proprietary attribute "step"
+line 7 column 1335 - Warning: <div> proprietary attribute "step"
+line 7 column 2215 - Warning: <div> proprietary attribute "step"
+Info: Document content looks like HTML Proprietary
+86 warnings, 0 errors were found!
+
+About HTML Tidy: https://github.com/htacg/tidy-html5
+Bug reports and comments: https://github.com/htacg/tidy-html5/issues
+Or send questions and comments to: https://lists.w3.org/Archives/Public/public-htacg/
+Latest HTML specification: http://dev.w3.org/html5/spec-author-view/
+Validate your HTML documents: http://validator.w3.org/nu/
+Lobby your company to join the W3C: http://www.w3.org/Consortium

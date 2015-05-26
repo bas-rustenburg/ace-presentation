@@ -1,0 +1,136 @@
+/* Presentation style sheet
+
+
+/* color theme
+$color1: #828282
+$color2: #383838
+$color3: #FFFECB
+$color4: rgb(213, 184, 213)
+$color5: #E8E195
+
+
+$textcolor: #fcfcfc
+$imagebackground: #FFF
+$shadowcolor: #efefef
+
+.impress-supported .fallback-message
+  display: none
+
+.highlight.code.python
+  background: #FEFEFE
+
+/* set the main font
+*
+  font-family: "Neutraface 2 Text"
+
+
+/* reflection on the title page
+div#title
+  img
+    -webkit-box-reflect: below -5px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.05)))
+
+
+/* properties for every slide
+
+.step
+  .notes
+    display: none
+  width: 800px
+  /*height:600px
+  // border-radius: 25px
+  // border: 3px solid $textcolor
+
+img
+  &[src="images/extinction_mirg.png"], &[src="images/abrf_mirg.png"], &[src="images/normal.png"], &[src="images/alchem_aims.png"], &[src="images/distributions.png"], &[src="images/alchem.png"], &[src="images/imatinib_image_curve.png"], &[src="images/reif_oostenbrink.png"], &[src="images/Kd_guest2.png"]
+    background: $imagebackground
+
+
+img
+  &[src="images/deshaw2.gif"]
+    -webkit-box-reflect: below 80px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.05)))
+
+
+/*Center table on page
+table
+  margin: 0 auto
+
+/*center images
+
+img
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+/* table spacing between columns
+td
+  padding: 10px
+  margin: 0 auto
+  
+h1, strong
+  color: #fff
+  
+h1
+  /* safari and chrome only
+  -webkit-text-stroke-width: 1px
+  -webkit-text-stroke-color: $shadowcolor
+  
+h2, em
+  color: $color4
+
+h3
+  color: $color3
+
+h4, p
+  color: $textcolor
+
+a:link
+  color: $color3
+
+
+/* visited link */
+a:visited
+  color: $color4
+
+
+/* mouse over link */
+a:hover
+  color: $color5
+
+
+/* selected link */
+a:active
+  color: $color1
+  background-color: #FEFEFE
+
+body
+  font-family: 'Neutraface 2 Text', sans-serif
+  min-height: 740px
+  font-size: 140%
+  color: $textcolor
+  background: $color1
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from($color1), to($color2))
+  background: -webkit-radial-gradient($color1, $color2)
+  background: -moz-radial-gradient($color1, $color2)
+  background: -ms-radial-gradient($color1, $color2)
+  background: -o-radial-gradient($color1, $color2)
+  background: radial-gradient($color1, $color2)
+
+/* Help popup
+#hovercraft-help
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5)
+  color: #EEEEEE
+  font-size: 100%
+  left: 2em
+  bottom: 2em
+  width: 26em
+  border-radius: 1em
+  padding: 1em
+  position: fixed
+  right: 0
+  text-align: center
+  z-index: 100
+  display: block
+  font-family: Verdana, Arial, Sans
+
+.impress-enabled #hovercraft-help.hide, #hovercraft-help.disabled
+  display: none
