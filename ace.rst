@@ -45,13 +45,11 @@ Date : 5/29
 The efficiency of the pharmaceutical industry has been declining for years
 ==========================================================================
 
-Eroom's law
------------
 
 .. figure:: images/erooms.jpg
-  :width: 500px
+  :width: 600px
   
-  Kack W. Scannell et al. *Nature Reviews Drug Discovery* 11, 191-200 (March 2012)
+  Kack W. Scannell et al. *Nature Reviews Drug Discovery* 11, 191-200 (2012)
 
 ----
 
@@ -61,7 +59,7 @@ It takes up to 4 million dollars, just to find a molecule that binds a target!
 .. figure:: images/drug_disc.jpg
   :width: 600px
   
-  Allen D. Roses  *Nature Reviews Drug Discovery* 7, 807-817 (October 2008)
+  Allen D. Roses  *Nature Reviews Drug Discovery* 7, 807-817 (2008)
 
   Each consecutive step only gets more expensive!
 
@@ -77,9 +75,10 @@ Computational approaches offer a cheap solution
 
 * They benefit from Moore's law, with increased computational efficiency each year
 
-* Drugs that do not bind the intended target can fail earlier, without a huge R&D investment
-
 * Allows for a *fail fast, fail cheaply* methodology for designing drugs
+    * Drugs that do not bind the intended target can fail earlier, without a huge R&D investment
+
+* Ability to study hypothetical small molecules
 
 .. note::
   For instance,
@@ -92,29 +91,76 @@ Computational approaches offer a cheap solution
 It is all about the binding affinity
 ====================================
 
-.. image:: images/colored_PL.png
-  :width: 300px
+A strong binder maximizes the ratio of complex concentration (**[PL]**) over free protein (**[P]**) and ligand (**[L]**).
+
+This is known as the association constant (**Ka**).
+
++-------------------------------------+
+| .. image:: images/colored_PL.png    |
+|   :width: 300px                     |
++-------------------------------------+
+| .. image:: images/colored_Ka_Kd.png |
+|   :width: 600px                     |
++-------------------------------------+
 
 ----
 
 It is all about the binding affinity
 ====================================
 
+A strong binder minimizes the ratio of free protein (**[P]**) and ligand (**[L]**) over complex concentration (**[PL]**).
+
+This is known as the dissociation constant (**Kd**), often used synonymously with the binding affinity.
+
 +-------------------------------------+
 | .. image:: images/colored_PL.png    |
 |   :width: 300px                     |
 +-------------------------------------+
-| .. image:: images/colored_Kd_PL.png |
+| .. image:: images/colored_Kd_Ka.png |
+|   :width: 600px                     |
++-------------------------------------+
+
+----
+
+
+It is all about the binding affinity
+====================================
+
+A strong binder minimizes the ratio of free protein (**[P]**) and ligand (**[L]**) over complex concentration (**[PL]**).
+
+This is known as the dissociation constant (**Kd**), often used synonymously with the binding affinity.
+
+This can be related to the free energy of binding, **ΔG**.
+
++-------------------------------------+
+| .. image:: images/colored_PL.png    |
 |   :width: 300px                     |
++-------------------------------------+
+| .. image:: images/colored_Kd_Ka.png |
+|   :width: 600px                     |
++-------------------------------------+
+| .. image:: images/colored_Kd.png    |
+|   :width: 500px                     |
 +-------------------------------------+
 
 ----
 
 :id: docking
 
+Molecular docking for affinity estimation
+=========================================
+
++----------------------------------------------+------------------------------------------------------------+
+| .. figure:: images/docking.gif               | .. figure:: images/scoring.jpg                             |
+|   :width: 300px                              |   :width: 400px                                            |
+|                                              |                                                            |
+|   Molecule is inserted into a rigid receptor |   Free energy is estimated by some arbitrary scoring terms |
++----------------------------------------------+------------------------------------------------------------+
+
+----
+
 Docking does not provide accurate estimates
 ===========================================
-
 
 
 .. figure:: images/docking.png
@@ -123,7 +169,7 @@ Docking does not provide accurate estimates
   *For prediction of compound affinity, none of the docking programs or scoring functions made
   a useful prediction of ligand binding affinity.*
   
-  Warren et al. J. Med. Chem., 2006, 49 (20), pp 5912–5931
+  Warren et al. *J Med Chem* 49 (20), pp 5912–5931 (2006)
 
 
 ----
@@ -161,18 +207,52 @@ www.alchemistry.org
 
 ----
 
+
+
+
 Alchemical free energy calculations
 ===================================
 
-(in principle) allow for us to calculate affinities directly.
--------------------------------------------------------------
-.. image:: images/colored_Kd.png
-  :width: 300px
+(in principle) allow for us to calculate affinities indirectly.
+---------------------------------------------------------------
 
++------------------------------------------------+
+| .. image:: images/colored_Kd.png               |
+|   :width: 300px                                |
++------------------------------------------------+
+| .. image:: images/alchemical_intermediates.png |
+|   :width: 750px                                |
++------------------------------------------------+
+
+Chodera, JD et al. *Curr Opin Struct Biol*, 21:150 (2011)
 
 ----
 
+Alchemical free energy calculations
+===================================
 
+Alchemical methods allow for phase space overlap
+------------------------------------------------
+
++--------------------------------------+--------------------------------------+
+| .. figure:: images/normal_states.png | .. figure:: images/alchem_states.png |
+|   :width: 370px                      |   :width: 370px                      |
++--------------------------------------+--------------------------------------+
+| .. figure:: images/colored_zwanzig.png                                      |
+|   :width: 400px                                                             |
++-----------------------------------------------------------------------------+
+
+Wu, D and Kofke, DA *J Chem Phys* 123: 054103 (2005).
+
+Zwanzig, RW, *J Chem Phys* 22, 1420 (1954)
+
+.. note::
+  You can interpret the equation as follows. We sample from state A, but use this to sample state B.
+  To unbias the samples, we remove a factor of exp(-beta U_A), and reweight by adding a factor of exp(-beta U_B).
+  If you sample A, the states might correspond to mostly high energy states in b, where the exponent of -U_B is very small,
+  meaning little contribution to the free energy. Therefore, your estimate converges very slowly.
+
+----
 
 Alchemical free energy calculations
 ===================================
@@ -396,6 +476,23 @@ Binding of multiple ligands to a single target
 Fragment based drug discovery
 -----------------------------
 
++--------------------------------------------------+-------------------------------------------+
+| .. figure:: images/hts.jpg                       | .. figure:: images/fbdd.jpg               |
+|   :width: 300px                                  |   :width: 350px                           |
+|                                                  |                                           |
+|   A conventional high-throughput screening hit.  |   A fragment hit that is later optimized. |
++--------------------------------------------------+-------------------------------------------+
+
+Rees, DC et al. *Nature Reviews Drug Discovery* 2004, 3, 660-67
+
+----
+
+Binding of multiple ligands to a single target
+==============================================
+
+Fragment based drug discovery
+-----------------------------
+
 At high concentrations, multiple fragments can bind to a protein
 ................................................................
 
@@ -413,6 +510,21 @@ Over B et al. *Nat Chem* 2013 Jan;5(1):21-8
 
 ----
 
+Weak binding of fragments
+=========================
+
+Consequences of the strong binding approximation
+------------------------------------------------
+
++---------------------------------------+-----------------------------------+
+| .. figure:: images/gilson.png         | .. figure:: images/squarewell.png |
+|   :width: 400px                       |   :width: 300px                   |
++---------------------------------------+-----------------------------------+
+| .. figure:: images/strong_binding.png |                                   |
+|   :width: 400px                       |                                   |
++---------------------------------------+-----------------------------------+
+
+----
 
 
 :id: aim1
@@ -428,16 +540,135 @@ Aim 1.
 
 ----
 
-Experiment versus computation
-=============================
 
-* We will use *alchemical free energy calculations* to predict binding free energies, while we compare various approaches to each other
 
-* At the same time, we will perform *isothermal titration calorimetry* (ITC) experiments that can validate the different corrections.
+
+Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
+================================================================================================================
+Aim 1.
+--------
+
+.. figure:: images/reif_oostenbrink.png
+  
+  Bulk liquids are approximated in simulation, either by using periodic boundary conditions, or an implicit solvent.
+  Often, to further reduce computation cost, we introduce truncated,potentials and non-Coulombic electrostatics (such as **particle mesh Ewald** [PME],and **reaction field** [RF] potentials).
+
+Reif, MM  and Oostenbrink, C  *J Comput Chem*  35.3  pp. 227–243 (2013)
+
 
 
 
 ----
+
+Ewald summation as a long range electrostatics approxmation
+===========================================================
+
++-------------------------------------------------+-------------------------------------------------------------+
+| .. figure:: images/pbc_ewald.png                | .. figure:: images/ewald.png                                |
+|   :width: 300px                                 |   :width: 300px                                             |
+|                                                 |                                                             |
+|   An infinitely periodic system as a lattice.   |   Charges are additionally described with distributions.    |
++-------------------------------------------------+-------------------------------------------------------------+
+
+.. note::
+  real space part: Ureal = 1/2 sum i=1 to N sum j=1 to N sum \|n\| =0 to infinity (qi qj)/(4pi eps0)  * erfc(alph \|rij + n\|)/ \|rij +n\|
+  
+  reciprocal space part: U_reci = 1/2 sum k \ne 0 sum i=1 to N sum j=1 to N (qi qj)/(4pi eps0)  4 pi^2 /k^2 exp (- k^2/4alph^2) cos(k*rij)
+  
+  subtract self term:  - \alpha/ sqr(pi) sum k=1 to n  q^2_k / (4pi eps0)
+  
+  correction if not tin foil: (2pi)/(3L^3) sum =1 to N (qi/(4pi eps0) ri )^2
+  
+
+----
+
+Ewald summation
+===============
+
+Neutralizing the system charge
+------------------------------
+
+There is an effective system neutralizing charge, called jellium/gellium.
+
+This system wide charge density ρ depends on the box size, L.
+
++-------------------------------------------------+-------------------------------------------------------------------+
+| .. figure:: images/pbc_ewald.png                | .. figure:: images/colored_gellium.png                            |
+|   :width: 300px                                 |   :width: 400px                                                   |
+|                                                 |                                                                   |
+|   An infinitely periodic system as a lattice.   |   The charge density in the system is a function of the box size. |
++-------------------------------------------------+-------------------------------------------------------------------+
+
+Here, **k** stands for the different boxes in the lattice, and **i** indicates individual point charges **q\_i**, with their position vectors **r⃗**.
+
+----
+
+
+
+Ewald summation
+===============
+
+Neutralizing the system charge
+------------------------------
+
+There is an effective system neutralizing charge, called jellium/gellium.
+
+This system wide charge density ρ depends on the box size, L.
+
++---------------------------------------------------------+-------------------------------------------------------------------+
+| .. figure:: images/box_sizes.png                        | .. figure:: images/colored_gellium.png                            |
+|   :width: 300px                                         |   :width: 400px                                                   |
+|                                                         |                                                                   |
+|   The charge density differs between complex and ligand |   The charge density in the system is a function of the box size. |
+|   because of a net charge change and the box size.      |                                                                   |
++---------------------------------------------------------+-------------------------------------------------------------------+
+
+----
+
+
+
+:id: aim1-corrections
+
+
+Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
+================================================================================================================
+Aim 1.
+------
+
+A number of corrections have been proposed but:
+ * They have not been compared to each other
+ 
+   * Not used on the same systems
+   
+ * Quantitative correctness of these methods has not been established
+ 
+   * Not compared to experiment!
+
+Sources:
+ - Reif MM and Oostenbrink C *J Comput Chem* 35.3 , pp. 227–243 (2013)
+ - Rocklin Gj et al. *J Chem Phys* 139.18 , p. 184103. (2013)
+ - Lin YL et al. *J Chem Theory Comput* 10.7, pp. 2690–2709. (2014)
+
+----
+
+Compare the different charge correction models
+==============================================
+
+
+We will consider these approaches:
+
+* Reif and Oostenbrink use thermodynamic cycles to eliminate individual components.
+* Rocklin et al. use Poisson-Boltzmann calculations to quantify the erroneous contributions.
+* Lin et al. use potential of mean force (PMF) calculations in a large simulation system, pulling the ligand away from the protein non-alchemically.
+* Eliminating a pair of ions, with a net charge of **0**.
+
+We will first check if the methods produce the same quantitative estimate.
+Next, we will compare to experiment, to see if they produce a quantitatively correct answer.
+
+This is the first comparison of any of these methods on the same system!
+
+----
+
 
 :id: aim1-modelsystem
 
@@ -460,21 +691,86 @@ We will use cucurbit-\[7\]-uril as a model system
 
 ----
 
-Basic slide on ITC
-==================
+Experimental validation
+=======================
 
+* We will use *alchemical free energy calculations* to predict binding free energies, while we compare various approaches to each other
 
+* At the same time, we will perform *isothermal titration calorimetry* (ITC) experiments that can validate the different corrections.
 
 
 ----
 
+Isothermal titration calorimety
+===============================
+
+The instrument
+--------------
+
++-------------------------------------+
+| .. image:: images/itcinstrument.jpg |
+|   :width: 400px                     |
++-------------------------------------+
+
+Zhou et al. *Nature Protocols* 6, 158–165 (2011)
+
+----
+
+Isothermal titration calorimety
+===============================
+
+The data obtained
+-----------------
+
++-------------------------------------+
+| .. image:: images/itcinstrument.jpg |
+|   :width: 200px                     |
++-------------------------------------+
+| .. image:: images/itcexample.jpg    |
+|   :width: 650px                     |
++-------------------------------------+
+
+Zhou et al. *Nature Protocols* 6, 158–165 (2011)
+http://www.biochemistry.ucla.edu/biochem/shared/instruments/Isothermal.html
+
+----
 
 
-Current ITC analysis protocols do not propagate errors of the experimental procedure
-====================================================================================
+Isothermal titration calorimety
+===============================
 
-.. figure:: images/abrf_mirg.png
-  :width: 600px
+The data obtained
+-----------------
+
++-------------------------------------+
+| .. image:: images/itcexample.jpg    |
+|   :width: 650px                     |
++-------------------------------------+
+
+Zhou et al. *Nature Protocols* 6, 158–165 (2011)
+http://www.biochemistry.ucla.edu/biochem/shared/instruments/Isothermal.html
+
+----
+
+Isothermal titration calorimetry
+================================
+
+There are some issues with the standard analysis...
+---------------------------------------------------
+
+----
+
+Binding of CBS to carbonic anhydrase
+====================================
+
+Observations from tbe ABRF-MIRG'02 study
+----------------------------------------
+
++-------------------------------------+-------------------------------------+
+| .. figure:: images/abrf_mirg.png    | .. image:: images/itcexample_r.jpg  |
+|   :width: 500px                     |   :width: 250px                     |
++-------------------------------------+-------------------------------------+
+
   
   Myszka DG et al. *J Biomol Tech* 2003 Dec; 14(4):247-69
 
@@ -494,118 +790,54 @@ From the lambert beer law:
     
     where A is absorbance, c is concentration and l is the pathlength
 
+----
 
+If there are so many issues...
+==============================
 
-
-
+Why still use ITC?
+------------------
 
 ----
 
-:id: aim1-motivation
+Isothermal titration calorimetry
+================================
 
-Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
-================================================================================================================
-Aim 1.
---------
-
-
-+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| .. image:: images/reif_oostenbrink.png | In order to apply alchemical free energy calculations to charged ligands, one needs to eliminate artifacts introduced into the calculation arising from the modeling of bulk solvent behavior using a small periodic system. |
-+----------------------------------------+                                                                                                                                                                                                                              |
-| Image Source: [#]_                     | Ligand interactions with:                                                                                                                                                                                                    |
-|                                        |                                                                                                                                                                                                                              |
-|                                        | * solvent (Blue)                                                                                                                                                                                                             |
-|                                        | * receptor (Red)                                                                                                                                                                                                             |
-|                                        | * self-interaction (Green)                                                                                                                                                                                                   |
-+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-
-.. [#] MM Reif and C Oostenbrink. J Comput Chem 35.3 (Nov. 2013), pp. 227–243
-
+* Gives direct access to the thermodynamic properties of a binding reaction, directly related to alchemical free energy calculations!
+  
+  * You can obtain both the enthalpy and free energy
+* There is no need for fluorescent scaffolds or tags
+* There HAS to be a way to quantify the uncertainty accurately
 
 ----
 
-:id: aim1-approx
+Isothermal titration calorimetry
+================================
 
-
-Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
-================================================================================================================
-Aim 1.
---------
-
-+----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| .. image:: images/reif_oostenbrink.png | Bulk liquids are approximated in simulation, either by using periodic boundary conditions, or an implicit solvent.                                                                    |
-|                                        | Often, to further reduce computation cost, we introduce truncated,potentials and non-Coulombic electrostatics (such as particle mesh Ewald,[PME],and reaction field [RF] potentials). |
-+----------------------------------------+                                                                                                                                                                                       |
-| Image Source: [#]_                     |                                                                                                                                                                                       |
-|                                        |                                                                                                                                                                                       |
-|                                        |                                                                                                                                                                                       |
-|                                        |                                                                                                                                                                                       |
-|                                        |                                                                                                                                                                                       |
-+----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-.. [#] MM Reif and C Oostenbrink. J Comput Chem 35.3 (Nov. 2013), pp. 227–243
+* Gives direct access to the thermodynamic properties of a binding reaction, directly related to alchemical free energy calculations!
+  
+  * You can obtain both the enthalpy and free energy
+* There is no need for fluorescent scaffolds or tags
+* There HAS to be a way to quantify the uncertainty accurately
+  
+  * And there is! And it is called **Bayesian inference**.
 
 
 ----
-
-:id: aim1-corrections
-
-
-Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
-================================================================================================================
-Aim 1.
-------
-
-A number of corrections have been proposed but:
- * They have not been compared to each other
- * Quantitative correctness of these methods has not been established
-
-Sources:
- - MM Reif and C Oostenbrink. J Comput Chem 35.3 (Nov. 2013), pp. 227–243
- - GJ Rocklin et al. J Chem Phys 139.18 (2013), p. 184103.
- - YL Lin et al.  J Chem Theory Comput 10.7 (July 2014), pp. 2690–2709.
-
-----
-
-:id: aim1-subaims
-
-
-Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
-================================================================================================================
-Aim 1.
-------
-
-Subaim 1.1:  Develop an accurate approach to quantifying experimental uncertainty in ITC using Bayesian inference.
-..................................................................................................................
-
-Because we need a reliable experimental dataset in order to make a quantitative comparison
-
-Subaim 1.2: Perform a quantitative comparison of suggested correction models to experiments to establish a correct treatment of charged ligands in alchemical free energy calculations.
-.......................................................................................................................................................................................
-
-Evaluating the charge corrections, testing an alternative (counter ions), comparing to each other and experiment
-
-----
-
-
 
 :id: aim1-bitc
 
-Develop an accurate approach to quantifying experimental uncertainty in ITC using Bayesian inference.
+Accurately quantify experimental uncertainty using Bayesian inference.
 =====================================================================================================
 
-Subaim 1.1
-----------
-The experimental parameters, |lt_theta| , can be estimated using Bayes rule:
-|lt_Bayes| , where
+The experimental parameters, θ , can be estimated using Bayes rule:
 
-  - |lt_posterior| is the posterior distribution. The probability of the parameters given the observed data. *This is what we want to know!*
-  - |lt_likelihood| is the likelihood. The probability of the observed data, given a single set of parameters.
-  - |lt_prior| are distributions containing prior information. We can use this to propagate errors.
+.. figure:: images/colored_bayes_rule.png
+  :width: 250px
 
-
-We can sample from the posterior distribution by using a technique called *Markov chain Monte Carlo*.
+* **P(θ\|D)** is the *posterior* distribution. The probability of the parameters given the observed data. *This is what we want to know!*
+* **P(D\|θ)** is the *likelihood*. The probability of the observed data, given a single set of parameters.
+* **P(θ)** are *prior* distributions, containing prior information. We can use this to propagate errors such as known errors in reagent concentrations.
 
 ----
 
@@ -614,15 +846,14 @@ We can sample from the posterior distribution by using a technique called *Marko
 Sampling from a posterior distribution using MCMC
 =================================================
 
+Markov Chain Monte Carlo
+------------------------
 
-Flipping an weighted coin
+.. figure:: images/mcmc.gif
+  :width: 700px
 
-
-.. figure:: images/distributions.png
-
-
-  http://bayesianbiologist.com
-
+  http://mbjoseph.github.io/blog/2013/09/08/metropolis/
+  
 ----
 
 :id: aim1-parameters
@@ -690,53 +921,31 @@ What will our experimental results look like?
 
 ----
 
-:id: aim1-correction-models
-
-Compare the different charge correction models
-==============================================
-
-Subaim 1.2
-----------
-
-We will consider these approaches:
-
-* Reif and Oostenbrink use thermodynamic cycles to eliminate individual components
-* Rocklin et al. use Poisson-Boltzmann calculations with exact either numerical solutions to quantify the erroneous contributions.
-* Lin et al. use potential of mean force (PMF) calculations in a large simulation system, pulling the ligand away from the protein non-alchemically.
-* Eliminating a pair of ions, with a net charge of 0.
-
-We will first check if the methods produce the same quantitative estimate.
-Next, we will compare to experiment, to see if they produce a quantitatively correct answer.
-
-This is the first comparison of any of these methods on the same system!
-
-----
-
 (Backup) Slides on individual corrections
 =========================================
 
 
+:id: aim1-subaims
+
+
+Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
+================================================================================================================
+Aim 1.
+------
+
+Subaim 1.1:  Develop an accurate approach to quantifying experimental uncertainty in ITC using Bayesian inference.
+..................................................................................................................
+
+Because we need a reliable experimental dataset in order to make a quantitative comparison
+
+Subaim 1.2: Perform a quantitative comparison of suggested correction models to experiments to establish a correct treatment of charged ligands in alchemical free energy calculations.
+.......................................................................................................................................................................................
+
+Evaluating the charge corrections, testing an alternative (counter ions), comparing to each other and experiment
 
 ----
 
-:id: aim1-python
 
-.. code:: python
-
-    class VPITC(Instrument):
-
-       """
-       The MicroCal VP-ITC.
-       Volumes from brochure used. http://www.malvern.com/Assets/MRK2058.pdf
-       If possible, we recommend using the calibrated volume for the .itc file.
-       """
-
-       def __init__(self):
-           super(VPITC, self).__init__(V0=1.400 * ureg.milliliter, V_correction=0.044 * ureg.milliliter, itcfile=None, description="MicroCal VP-iTC")
-
-
-
-----
 
 :id: aim2
 

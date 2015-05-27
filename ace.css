@@ -21,11 +21,8 @@ div#title img {
   .step .notes {
     display: none; }
 
-img[src="images/extinction_mirg.png"], img[src="images/abrf_mirg.png"], img[src="images/normal.png"], img[src="images/alchem_aims.png"], img[src="images/distributions.png"], img[src="images/alchem.png"], img[src="images/imatinib_image_curve.png"], img[src="images/reif_oostenbrink.png"], img[src="images/Kd_guest2.png"] {
+img[src="images/ewald.png"], img[src="images/extinction_mirg.png"], img[src="images/abrf_mirg.png"], img[src="images/normal.png"], img[src="images/alchem_aims.png"], img[src="images/distributions.png"], img[src="images/alchem.png"], img[src="images/imatinib_image_curve.png"], img[src="images/reif_oostenbrink.png"], img[src="images/Kd_guest2.png"] {
   background: #FFF; }
-
-img[src="images/deshaw2.gif"] {
-  -webkit-box-reflect: below 80px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.05))); }
 
 /*Center table on page */
 table {
@@ -51,7 +48,7 @@ h1 {
   -webkit-text-stroke-color: #efefef; }
 
 h2, em {
-  color: #d5b8d5; }
+  color: #deffe2; }
 
 h3 {
   color: #FFFECB; }
@@ -64,7 +61,7 @@ a:link {
 
 /* visited link */
 a:visited {
-  color: #d5b8d5; }
+  color: #deffe2; }
 
 /* mouse over link */
 a:hover {
