@@ -540,9 +540,6 @@ Aim 1.
 
 ----
 
-
-
-
 Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
 ================================================================================================================
 Aim 1.
@@ -554,8 +551,6 @@ Aim 1.
   Often, to further reduce computation cost, we introduce truncated,potentials and non-Coulombic electrostatics (such as **particle mesh Ewald** [PME],and **reaction field** [RF] potentials).
 
 Reif, MM  and Oostenbrink, C  *J Comput Chem*  35.3  pp. 227–243 (2013)
-
-
 
 
 ----
@@ -669,14 +664,38 @@ This is the first comparison of any of these methods on the same system!
 
 ----
 
+(Backup) Slides on individual corrections
+=========================================
 
-:id: aim1-modelsystem
+----
 
 The host-guest model system
 ===========================
 
-Aim 1
------
+Cucurbit-\[7\]-uril as a model system
+-------------------------------------
+
+
++-----------------------------------+------------------------------------+
+| .. image:: images/guest11_top.png | .. image:: images/guest11_side.png |
+|   :width: 200px                   |   :width: 200px                    |
+|                                   |                                    |
++-----------------------------------+------------------------------------+
+
+----
+
+Hosts are the active component in Febreze!
+==========================================
+
+.. image:: images/febreze.jpg
+
+
+----
+
+
+The host-guest model system
+===========================
+
 
 We will use cucurbit-\[7\]-uril as a model system
 
@@ -690,6 +709,7 @@ We will use cucurbit-\[7\]-uril as a model system
 +------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 
 ----
+
 
 Experimental validation
 =======================
@@ -742,6 +762,13 @@ Isothermal titration calorimety
 The data obtained
 -----------------
 
+The heats are fit to the equation
+
+.. image:: images/colored_Qi.png
+  :width: 400px
+
+which describes the total heat after **i** injections.
+
 +-------------------------------------+
 | .. image:: images/itcexample.jpg    |
 |   :width: 650px                     |
@@ -784,11 +811,11 @@ The extinction coefficient
 .. figure:: images/extinction_mirg.png
   :width: 400px
 
-From the lambert beer law:
+From the Lambert-Beer law:
   .. figure:: images/colored_extinction.png
     :width: 150px
     
-    where A is absorbance, c is concentration and l is the pathlength
+where A is absorbance, c is concentration and l is the pathlength
 
 ----
 
@@ -825,10 +852,8 @@ Isothermal titration calorimetry
 
 ----
 
-:id: aim1-bitc
-
 Accurately quantify experimental uncertainty using Bayesian inference.
-=====================================================================================================
+======================================================================
 
 The experimental parameters, θ , can be estimated using Bayes rule:
 
@@ -840,8 +865,6 @@ The experimental parameters, θ , can be estimated using Bayes rule:
 * **P(θ)** are *prior* distributions, containing prior information. We can use this to propagate errors such as known errors in reagent concentrations.
 
 ----
-
-:id: aim1-mcmc
 
 Sampling from a posterior distribution using MCMC
 =================================================
@@ -856,76 +879,100 @@ Markov Chain Monte Carlo
   
 ----
 
-:id: aim1-parameters
 
-
-Develop an accurate approach to quantifying experimental uncertainty in ITC using Bayesian inference.
-=====================================================================================================
-
-Subaim 1.1
-----------
+Accurately quantify experimental uncertainty using Bayesian inference.
+======================================================================
 
 The ITC model structure
-.......................
+-----------------------
 
 .. image:: images/colored_parameters.png
   
 Thermodynamic parameters include
   
-  - binding affinity, |lt_dG|
+  - binding affinity, **ΔG**
   
-  - enthalpy of binding, |lt_dH|
+  - enthalpy of binding, **ΔH**
   
-  - mechanical heats offset, |lt_H0|
+  - mechanical heats offset, **ΔH0**
   
-  - concentration of syringe component, |lt_Xs|
+  - concentration of syringe component, **[Xs]**
   
-  - concentration of cell component, |lt_Mc|
+  - concentration of cell component, **[Mc]**
   
-  - noise parameter, |lt_sigma|
+  - noise parameter, **σ**
 
-We can use prior distributions |lt_prior| to propagate error estimates in concentrations, and include previous measurements.
+We use prior distributions **P(θ)** to propagate error estimates in concentrations, and previously obtained data.
 
 
 ----
 
-:id: aim1-likelihood
-
-Develop an accurate approach to quantifying experimental uncertainty in ITC using Bayesian inference.
-=====================================================================================================
-
-Subaim 1.1
-----------
-
+Accurately quantify experimental uncertainty using Bayesian inference.
+======================================================================
 
 The ITC model structure
-.......................
+-----------------------
 
-+--------------------------------------------------------------+-----------------------------------------------+
-| The likelihood model, |lt_likelihood|, is defined as         | .. image:: images/normal.png                  |
-|                                                              |   :height: 350px                              |
-| .. image:: images/colored_model.png                          |                                               |
-+--------------------------------------------------------------+-----------------------------------------------+
-| Where the observed heats are sampled from a normal distribution |lt_norm|, with a variance of |lt_variance|. |
-+--------------------------------------------------------------------------------------------------------------+
+We assume the injection heats, q\_n are drawn from a normal distribution, with the true heats as a mean, and a variance **σ**.
+
+.. image:: images/colored_model.png
+
++--------------------------------------+
+| .. image:: images/itc_test2.png      |
+|   :width: 550px                      |
++--------------------------------------+
+
 
 ----
 
-What will our experimental results look like?
-=============================================
+Accurately quantify experimental uncertainty using Bayesian inference.
+======================================================================
 
-+---------------------------------+--------------------------------------+
-| .. image:: images/itcexp.png    | .. image:: images/postpredictive.png |
-|   :width: 400px                 |   :width: 400px                      |
-+---------------------------------+--------------------------------------+
+The experimental parameters, θ , can be estimated using Bayes rule:
+
+.. figure:: images/colored_bayes_rule.png
+  :width: 250px
+
+* **P(θ\|D)** is the *posterior* distribution. The probability of the parameters given the observed data. *This is what we want to know!*
+* **P(D\|θ)** is the *likelihood*. The probability of the observed data, given a single set of parameters.
+* **P(θ)** are *prior* distributions, containing prior information. We can use this to propagate errors such as known errors in reagent concentrations.
 
 ----
 
-(Backup) Slides on individual corrections
-=========================================
+A preliminary host-guest titration
+==================================
+
+Host-guest data is not very noisy, making it excellent for a quantitative test of our approach.
+
++--------------------------------------+
+| .. image:: images/itcexp.png         |
+|   :width: 700px                      |
++--------------------------------------+
 
 
-:id: aim1-subaims
+----
+
+A posterior distribution of the parameters
+==========================================
+
+.. figure:: images/dHmcmc.png
+  :width: 700px
+  
+----
+
+A preliminary host-guest titration
+==================================
+
+Red dots • indicate observed data, violins depict the posterior distribution of each injection.
+The family of models that were sampled are shown as black curves.
+
++--------------------------------------+
+| .. image:: images/postpredictive.png |
+|   :width: 700px                      |
++--------------------------------------+
+
+----
+
 
 
 Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
@@ -941,69 +988,280 @@ Because we need a reliable experimental dataset in order to make a quantitative 
 Subaim 1.2: Perform a quantitative comparison of suggested correction models to experiments to establish a correct treatment of charged ligands in alchemical free energy calculations.
 .......................................................................................................................................................................................
 
-Evaluating the charge corrections, testing an alternative (counter ions), comparing to each other and experiment
+Evaluating the charge corrections, testing an alternative (counter ions), comparing to each other and experiment.
+
 
 ----
-
-
 
 :id: aim2
 
 Quantify the magnitude of protonation state effects on binding
 ==============================================================
-  
 Aim 2.
 ------
 
-
-.. image:: images/imatinib_sites.png
-  :width: 600px
-  
+.. image:: images/alchem_aims_protonation.png
+  :width: 800px
 
 ----
-
-:id: aim2-intro
 
 Quantify the magnitude of protonation state effects on binding
 ==============================================================
   
-Aim 2.
-------
 
 Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner.
 
 .. figure:: images/protonation.png
   :width: 700px
     
-  *The pH dependent effect in lin-benzoguanines binding to tRNA−guanine transglycosylase* [#]_
+  *The pH dependent effect in lin-benzoguanines binding to tRNA−guanine transglycosylase*
     
 
-.. [#] Chasing Protons: .... ,  Neeb et al. *J. Med. Chem.*, 2014, 57 (13), pp 5554–5565
+Neeb et al. *J. Med. Chem.*, 2014, 57 (13), pp 5554–5565
 
 ----
-
-:id: aim2-kinase
-
 
 Protonation states are relevant to kinase inhibitors
 ====================================================
 
-* Kinases are hugely important targetsfor anti cancer drugs.
+* Kinases are hugely important targets for anti cancer drugs.
 
 * Evidence exists that for the binding of imatinib to Abl kinase, pH dependent effects may contribute to the binding affinity, and preliminary data indicates that it is the same for *many other kinase inhibitors*.
 
 
 +---------------------------------------+--------------------------------------------+
 | .. image:: images/inhibitor-pKas.png  | .. image:: images/imatinib_image_curve.png |
-|   :width: 300px                       |   :width: 300px                            |
+|   :width: 200px                       |   :width: 300px                            |
 +---------------------------------------+--------------------------------------------+
 
+Szakács Z, et al. *J Med Chem* 48, 249–255 (2005)
+
+----
+
+
+Protonation states are relevant to kinase inhibitors
+====================================================
+
+* Preliminary data indicates that it is the same for *many other kinase inhibitors*.
+
++---------------------------------------+
+| .. image:: images/inhibitor-pKas.png  |
+|   :width: 350px                       |
++---------------------------------------+
+
+Preliminary data generated using Epik
 
 
 ----
 
-:id: aim2-subaims
+Our aim is to identify kinase systems where protonation state effects influence binding
+=======================================================================================
 
+to quantify the effect of protonation state effects on the binding affinity of kinase inhibitors.
+-------------------------------------------------------------------------------------------------
+
+
+----
+
+The standard alchemical free energy approach uses a single protonation state!
+=============================================================================
+
++------------------------------------------------+
+| .. image:: images/alchemical_intermediates.png |
+|   :width: 750px                                |
++------------------------------------------------+
+
+Chodera, JD et al. *Curr Opin Struct Biol*, 21:150 (2011)
+
+----
+
+
+
+Quantify the magnitude of protonation state effects on binding
+==============================================================
+Aim 2.
+------
+
+.. image:: images/alchem_aims_protonation.png
+  :width: 800px
+
+----
+
+Problems with the standard approach
+===================================
+
+1. If we observe significant mixtures of protonation states
+
+2. The distribution of protonation states change significantly upon binding
+
+Then the standard approach is **dead wrong**.
+
+.. image:: images/histidine.png
+  :width: 400px
+
+
+----
+
+Identify kinase systems where protonation state changes could be important.
+===========================================================================
+
+.. image:: images/humankinome.jpg
+  :width: 400px
+
+Manning, G, http://www.cellsignal.com/common/content/content.jsp?id=kinases
+
+----
+
+Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.
+=============================================================================================================
+
+We will perform a survey accross all (human) kinase complexes in the protein databank (PDB)
+-------------------------------------------------------------------------------------------
+
+.. image:: images/imatinib_sites.png
+  :width: 600px
+  
+----
+
+Multi-conformation continuum electrostatic (MCCE)
+=================================================
+
+* MCCE samples multiple conformations of protein side-chains
+
+* It allows for random changes to the protonation state using Monte Carlo
+
+* We will extend the framework to incorporate sampling of ligands protonation states.
+
++-------------------------------------+
+| .. image:: images/dGprotonation.png |
+|   :width: 500px                     |
+|                                     |
++-------------------------------------+
+| .. image:: images/mcce2_sharp.png   |
+|   :width: 400px                     |
+|                                     |
++-------------------------------------+
+
+.. note::
+  G elec is the electrostatic component of the free energy calculated for the titratable group in the protein,
+ 
+  G elec,ref is the electrostatic component of the transition free energy for the reference compound
+ 
+  Ref is peptide in solution
+
+
+----
+
+Multi-conformation continuum electrostatic (MCCE)
+=================================================
+
+
+* We will extend the framework to incorporate sampling of ligands protonation states.
+
++--------------------------------------+
+| .. image:: images/dGprotonation2.png |
+|   :width: 500px                      |
+|                                      |
++--------------------------------------+
+
+* Reference values are only available for amino acids
+
+* We need pKa estimates for ALL the kinase inhibitors studied!
+
+----
+
+
+We will benchmark small molecule pKa prediction tools against experimental data data.
+=====================================================================================
+
+* There is pKa data available for a number of kinase inhibitors that are FDA approved.
+
+* Using this data, we will benchmark available pKa prediction tools.
+
+----
+
+The pKa tools we will consider
+==============================
+
+* **MoKa** generates pKa s based on atomistic descriptors, defined by the surrounding atoms. The descriptors are based on molecular interaction fields calculated using GRID for a library of 3D fragments, but can successfully be applied on 2D structures.
+ 
+* Schrodinger’s **Jaguar** provides means of estimating pKa values using quantum mechanical methods.
+ 
+* **Epik** uses Hammett Taft linear free energy approaches for predicting pKa values.
+
+----
+
+Backup slides for each pKA method
+=================================
+
+----
+
+
+There are a lot of rough approximations in MCCE
+===============================================
+
++-------------------------------------+
+| .. image:: images/mcce2_sharp.png   |
+|   :width: 400px                     |
+|                                     |
++-------------------------------------+
+
+* No dynamics included of the protein backbone
+
+* A single ligand orientation (crystal structure)
+
+Therefore we can only use it to survey and not to quantify.
+
+----
+
+We will perform alchemical free energy calculations using a dynamic protonation state scheme
+============================================================================================
+
+We will extend our in house alchemical free energy calculation framework (Yank) to incorporate dynamic protonation states
+
++-------------------------------------+
+| .. image:: images/dGprotonation.png |
+|   :width: 500px                     |
+|                                     |
++-------------------------------------+
+
+These calculations will use the pKa predictions provided by our pKa tool of choice.
+
+.. note::
+  Or our experimental estimates, if the pKa tools dont perform well enough.
+
+----
+
+We will use alchemical free energy calculations to quantify
+===========================================================
+    
+
+  * The total free energy of binding
+  * The contribution of protonation state changes to the total.
+  
+  +-------------------------------------+
+  | .. image:: images/dGprotonation.png |
+  |   :width: 500px                     |
+  |                                     |
+  +-------------------------------------+
+  
+  
+  * Perform complementary ITC experiments to validate the free energy calculations
+  
+----
+
+ITC experiments to disseminate protonation state effects from binding
+=====================================================================
+
+Using buffers with different ionization enthalpy
+------------------------------------------------
+
+In order to detect protonation state effects in ITC, we can perform multiple experiments that have different *ionization enthalpies*.
+This will lead to different magnitude contributions to the binding affinity, which will allow us to detect and quantify net protonation state effects.
+
+*missing a figure here*
+
+----
 
 Quantify the magnitude of protonation state effects on binding
 ==============================================================
@@ -1026,143 +1284,188 @@ The systems identified will be simulated using alchemical free energy calculatio
  
 ----
 
-:id: subaim-2.1
+Alchemical free energy calculations
+===================================
 
-Benchmark small molecule pKa prediction tools against experimental data for kinase inhibitors.
-==============================================================================================
+There are deficiencies that need to be addressed before alchemical free energy calculations can be applied widely.
 
-Subaim 2.1
-----------
-
-
-----
-
-Experimental data
-=================
-
-** Add image T3 data & instrument **
-
-For the sake of having a completely computational framework to perform these calculations, we would like to find a reliable predictor.
-
-----
-
-We will benchmark small molecule pKa prediction tools against this data.
-========================================================================
-
-
-* **MoKa** generates pKa s based on atomistic descriptors, defined by the surrounding atoms. The descriptors are based on molecular interaction fields calculated using GRID for a library of 3D fragments, but can successfully be applied on 2D structures.
- 
-* Schrodinger’s **Jaguar** provides means of estimating pKa values using quantum mechanical methods.
- 
-* **Epik** uses Hammett Taft linear free energy approaches [86] for predicting pKa values.
-
-
-----
-
-Identify kinase systems where protonation state changes could be important.
-===========================================================================
+.. image:: images/alchem_aims_multi.png
+  :width: 800px
 
 ----
 
 
-:id: subaim-2.2
+Available free energy calculation tools focus on 1:1 interactions!
+==================================================================
 
+.. image:: images/colored_PL.png
+  :width: 300px
 
-Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.
-=============================================================================================================
+----
 
-Subaim 2.2
-----------
+Binding of multiple ligands to a single target
+==============================================
 
-We will investigate complex structures from the protein databank, using a framework called MCCE.
-
-.. image:: images/imatinib_sites.png
+.. figure:: images/HSA.png
   :width: 600px
   
+  A summary of human serum albumin (HSA) crystal structures bound to small molecules.
+
+  Ghuman, J et al. *J Mol Biol* 2005, 353, 38–52
+  
+----
+
+
+Binding of multiple ligands to a single target
+==============================================
+
+Fragment based drug discovery
+-----------------------------
+
+At high concentrations, multiple fragments can bind to a protein
+................................................................
+
+The binding of 3 fragments to p38a kinase.
+
++------------------------------------------+--------------------------------------+
+| .. figure:: images/fragment_p38_4ehv.png | .. figure:: images/fragment_4ehv.png |
+|   :width: 400px                          |   :width: 200px                      |
+|                                          |                                      |
+|   PDB: 4EHV                              |   PDB: 0SJ                           |
+|                                          |                                      |
++------------------------------------------+--------------------------------------+
+
+Over B et al. *Nat Chem* 2013 Jan;5(1):21-8
 
 ----
 
-Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.
-=============================================================================================================
+We will use the binding of NSAIDs to HSA as a model system
+==========================================================
 
-MCCE samples multiple conformations of protein side-chains and estimates the most probably protonation state.
-The framework has been extended to incorporate sampling of ligands. We will keep ligand conformations fixed to those found in crystal structures.
+Human serum albumin is
 
-Subaim 2.2
-----------
-  
-.. image:: images/mcce2_sharp.png
+* Cheap (1g for $50)
+* Soluble
+* Binds many known drugs
+
+We will use NSAIDs
+
+* Widely used over-the-counter drugs
+* Commercially available
+* Available as soluble salt forms (important for ITC)
+
+----
+
+
+
+For each equilibrium, we define a binding constant
+====================================================
+
+The binding constant **Kn** is a function of a stoichiometric binding free energy **gn**.
+
+.. figure:: images/colored_stoichiometric_constant.png
   :width: 400px
 
 ----
 
-:id: subaim-2.3
+An alchemical ladder between stoichiometric states
+==================================================
 
-Dissect the determinants and impact of protonation state effects on binding affinity through free energy calculations and ITC experiments.
-==========================================================================================================================================
+We can then calculate the binding cooperativity between different stoichiometric states by constructing alchemical transitions that add a ligand.
 
-Subaim 2.3
-----------
+.. figure:: images/latex_images/equil_ladder.png
+  :width: 600px
 
-We will perform alchemical free energy calculations using a dynamic protonation state scheme also known as *constant-pH* simulations.
+There will be **n+1** non-alchemical states, from 0, to **n** ligands bound.
 
-These calculations will use the pKa predictions provided by our pKa tool of choice.
+*make a clearer ladder*
+
+----
+
+The stoichiometric free energy
+==============================
+
+The free energy is reduced to just receptor-ligand interactions
+---------------------------------------------------------------
+
+The free energy (**gn**) is defined
+
+.. image:: images/colored_gn_semigrand.png
+  :width: 700px
+
+where **un** is a reduced potential energy, including just ligand-receptor interactions.
+
+.. image:: images/colored_un_semigrand.png
+  :width: 700px
+
+----
+
+The binding constants combined into a single polynomial
+=======================================================
+
+It can be shown when you define a polynomial of all binding constants **Kn**
+
+.. image:: images/colored_binding_poly.png
+  :width: 600px
+
+the free energy can be defined as such
+
+.. image:: images/colored_g_kt_lnq.png
+  :width: 300px
+
+**Q[L]** here is also referred to as the semi-grand canonical partition function.
+
+----
+
+Simulate ITC experiments from the semi-grand canonical ensemble
+===============================================================
+
+* We obtain free energy **g\_n** from alchemical free energy calculations, as well as the enthalpy (**h_n**)
+
+* We can use this data to simulate an ITC experiment
+ 
+* To do so, we simply calculate the heat at a given protein and ligand concentration for a given cell volume.
+
+.. image:: images/colored_qn_itc.png
+  :width: 400px
+
+
+----
+
+Perform complimentary ITC experiments on HSA
+============================================
+
+From the semi-grand canonical ensemble methodology, we can fit the polynomial as a function of ligand concentration
+
+.. image:: images/colored_binding_poly.png
+  :width: 600px
+
+and use Bayesian inference to infer the value of the **Kn** coefficients.
+
+Using Bayesian model selection, we may select for the optimum number of coefficients to fit.
+  
+.. note::
+  Reversible jump
+
+
+----
+
+Bayesian experimental design
+============================
+
+* It might be hard to recapitulate the entire curve from a single ITC experiment
+
+* Higher order binding constants are expected to have large uncertainty
+
+* We can use Bayesian experimental design to suggest follow up experiments that increase our expectation
 
 .. note::
-  Or our experimental estimates, if the pKa tools dont perform well enough.
-  
-We will quantify
+  Especially if the site constants are very different in order of magnitude, we may need different experimental conditions
 
-  * The total free energy of binding and,
-  * The contribution of protonation state changes to the total.
-  * Perform complementary ITC experiments to validate the free energy calculations
-  
-----
-
-Constant-pH alchemical free energy calculations
-===============================================
-
+  expected value of the log likelihood function, with respect to the conditional distribution of Z  given D under the current estimate of the parameters theta
 
 ----
 
-Calculating free energy of protonation contribution
-===================================================
-
-----
-
-ITC experiments to disseminate protonation state effects from binding
-=====================================================================
-
-Using buffers with different ionization enthalpy
-------------------------------------------------
-
-In order to detect protonation state effects in ITC, we can perform multiple experiments that have different *ionization enthalpies*.
-This will lead to different magnitude contributions to the binding affinity, which will allow us to detect and quantify net protonation state effects.
-
-----
-
-Alternatives
-============
-
-
-----
-
-Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.
-========================================================================================================================
-
-Aim 3.
-------
-
-Weak binding and association of multiple ligands to proteins are ubiquitous interactions in biological and pharmaceutically relevant systems.
-
-It is particularly common when using drug discovery approaches such as fragment-based ligand design, where concentrations are scaled up to detect weak binding signals, often resulting in multiple associating fragments.
-
-Most available free energy calculation frameworks focus on 1:1 binding interactions, and are not suited for calculating free energies of an arbitrary number of ligands.
-
-**We will overcome deficiencies in current frameworks with a new framework that can provide predictions for ligands binding multiple times to a single macromolecule.**
-
-
-----
 
 Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.
 ========================================================================================================================
@@ -1184,35 +1487,16 @@ We will expand the Bayesian ITC framework (Aim 1) to incorporate multiple ligand
 
 ----
 
-An alchemical ladder between stoichiometric states
-==================================================
 
-.. figure:: images/latex_images/equil_ladder.png
-  :width: 600px
+Conclusion
+==========
 
-----
+We hope to have addressed each of these issuess adequately, in order to improve the utility of alchemical free energy calculations.
 
-Extend alchemical free energy calculations to simulate multiple ligand binding.
-===============================================================================
-
-Subaim 3.1
-----------
-
+.. image:: images/alchem_aims_red.png
+  :width: 800px
 
 ----
-
-:id: subaim3.2
-
-Validate computational predictions by applying Bayesian model selection on ITC  experiments of HSA and a series of NSAIDs.
-==========================================================================================================================
-
-Subaim 3.2
-----------
-
-
-----
-
-
 
 That's all folks!
 =================
