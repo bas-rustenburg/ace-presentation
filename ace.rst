@@ -26,8 +26,8 @@
 :id: title
 
 
-Admission to candidacy exam
-===========================
+Toward addressing deficiencies in alchemical free energy calculations
+=====================================================================
 
 Bas Rustenburg
 --------------
@@ -98,16 +98,20 @@ It is all about the binding affinity
 
 A strong binder minimizes the ratio of free protein (**[P]**) and ligand (**[L]**) over complex concentration (**[PL]**).
 
-This is known as the dissociation constant (**Kd**), often used synonymously with the binding affinity.
-
-This can be related to the free energy of binding, **ΔG**.
-
 +--------------------------------------+
 | .. image:: images/colored_PL.png     |
-|   :width: 50%                        |
+|   :width: 70%                        |
++--------------------------------------+
+
+This is known as the dissociation constant (**Kd**), often used synonymously with the binding affinity.
+
 +--------------------------------------+
 | .. image:: images/colored_kdkoff.png |
 |   :width: 70%                        |
++--------------------------------------+
+
+This can be related to the free energy of binding, **ΔG**.
+
 +--------------------------------------+
 | .. image:: images/colored_Kd.png     |
 |   :width: 60%                        |
@@ -129,8 +133,11 @@ Molecular docking for affinity estimation
 
 ----
 
-Docking does not provide accurate estimates
-===========================================
+Docking scores do not correlate with affinity
+=============================================
+
+*For prediction of compound affinity, none of the docking programs or scoring functions made
+a useful prediction of ligand binding affinity.*
 
 +---------------------------------+
 | .. figure:: images/docking.png  |
@@ -138,11 +145,11 @@ Docking does not provide accurate estimates
 |                                 |
 +---------------------------------+
   
-  *For prediction of compound affinity, none of the docking programs or scoring functions made
-  a useful prediction of ligand binding affinity.* At most, the top 10-20% cores shows an enrichment in binders.
+At most, the top 10-20% cores shows an enrichment_ in binders.
   
   Warren et al. *J Med Chem* 49 (20), pp 5912–5931 (2006)
 
+.. _enrichment: index.html#/enrichment
 
 ----
 
@@ -151,7 +158,7 @@ Docking does not provide accurate estimates
 If you have a fast super-computer
 =================================
 
-You can simulate binding in from *microsecond timescale* MD simulations.
+You can observe binding in *microsecond timescale* MD simulations.
 
 
 .. image:: images/deshaw2.gif
@@ -183,9 +190,12 @@ Alchemical free energy calculations
 +------------------------------------------------+
 | .. image:: images/alchemical_intermediates.png |
 |   :width: 80%                                  |
+|   :target: index.html#/alchem-intermediates    |
 +------------------------------------------------+
 
 Chodera, JD et al. *Curr Opin Struct Biol*, 21:150 (2011)
+
+
 
 ----
 
@@ -200,7 +210,7 @@ Schrodinger has shown that their free energy calculation framework can calculate
  
 
 .. figure:: images/schrodinger.jpg
-  :width: 60%
+  :width: 50%
 
 
 
@@ -326,7 +336,7 @@ Anti-histamines
 Why are there issues with in charged ligands?
 =============================================
 
-Bulk liquids are huge, therefore, a number of approximations are made:
+Bulk liquids are huge, therefore, a number of approximations_ are made:
 
 * Periodic boundary conditions, or implicit solvents
 
@@ -334,14 +344,61 @@ Bulk liquids are huge, therefore, a number of approximations are made:
 
 * Non-coulombic long-range electrostatics
   
-  * Ewald summation (or particle mesh Ewald, PME)
+  * Ewald summation_ (or particle mesh Ewald, PME)
   * Reaction field models (RF)
 
 .. figure:: images/reif_oostenbrink.png
   
 Reif, MM  and Oostenbrink, C  *J Comput Chem*  35.3  pp. 227–243 (2013)
 
+.. _approximations: index.html#/approximations
+
+.. _summation: index.html#/ewald
+
 ----
+
+What can be done to resolve the issues?
+=======================================
+
+A number of corrections_ have been proposed but:
+ * They have not been compared to each other
+ 
+   * Not used on the same systems
+   
+ * Quantitative correctness of these methods has not been established
+ 
+   * Not compared to experiment!
+
+Sources:
+ - Reif MM and Oostenbrink C *J Comput Chem* 35.3 , pp. 227–243 (2013)
+ - Rocklin GJ et al. *J Chem Phys* 139.18 , p. 184103. (2013)
+ - Lin YL et al. *J Chem Theory Comput* 10.7, pp. 2690–2709. (2014)
+
+.. _corrections:  index.html#/rocklin
+  
+
+----
+
+Compare the different charge correction models
+==============================================
+
+
+We will consider these approaches:
+
+* Reif and Oostenbrink use thermodynamic cycles to eliminate individual components.
+* Rocklin et al. use Poisson-Boltzmann calculations to quantify the erroneous contributions.
+* Lin et al. use potential of mean force (PMF) calculations in a large simulation system, pulling the ligand away from the protein non-alchemically.
+* Eliminating a pair of ions, with a net charge of **0**.
+
+1. We will check if the methods produce the *same quantitative estimate*.
+
+2. We will compare to experiment, to see if they produce a *quantitatively correct answer*.
+
+This is the first comparison of any of these methods on the same system!
+
+----
+
+:id: approximations
 
 Issues arrising from using Ewald summation
 ==========================================
@@ -365,43 +422,7 @@ Lin YL et al. *J Chem Theory Comput* 10.7, pp. 2690–2709. (2014)
 
 ----
 
-What can be done to resolve the issues?
-=======================================
 
-A number of corrections have been proposed but:
- * They have not been compared to each other
- 
-   * Not used on the same systems
-   
- * Quantitative correctness of these methods has not been established
- 
-   * Not compared to experiment!
-
-Sources:
- - Reif MM and Oostenbrink C *J Comput Chem* 35.3 , pp. 227–243 (2013)
- - Rocklin GJ et al. *J Chem Phys* 139.18 , p. 184103. (2013)
- - Lin YL et al. *J Chem Theory Comput* 10.7, pp. 2690–2709. (2014)
-
-----
-
-Compare the different charge correction models
-==============================================
-
-
-We will consider these approaches:
-
-* Reif and Oostenbrink use thermodynamic cycles to eliminate individual components.
-* Rocklin et al. use Poisson-Boltzmann calculations to quantify the erroneous contributions.
-* Lin et al. use potential of mean force (PMF) calculations in a large simulation system, pulling the ligand away from the protein non-alchemically.
-* Eliminating a pair of ions, with a net charge of **0**.
-
-1. We will check if the methods produce the *same quantitative estimate*.
-
-2. We will compare to experiment, to see if they produce a *quantitatively correct answer*.
-
-This is the first comparison of any of these methods on the same system!
-
-----
 
 What system will we use to test?
 ================================
@@ -419,6 +440,7 @@ Cucurbit-\[7\]-uril as a model system
   
   *It binds cationic guests*
   
+  resembles protein backbone
 
 ----
 
@@ -439,7 +461,7 @@ Cucurbit-\[7\]-uril as a model system
 |                                   |                                    | * Both guest and hosts are very soluble                                          |
 +-----------------------------------+------------------------------------+ * They are small, with few degrees of freedom                                    +
 | .. image:: images/Kd_guest2.png                                        | * The affinities are in the range of typical protein-small molecule interactions |
-|   :width: 70%                                                          |                                                                                  |
+|   :width: 80%                                                          |                                                                                  |
 +------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 
 ----
@@ -474,11 +496,8 @@ Zhou et al. *Nature Protocols* 6, 158–165 (2011)
 Isothermal titration calorimety
 ===============================
 
-Analysis
----------
-
 Parameters are fit to the integrated peaks
-..........................................
+------------------------------------------
 
 +-------------------------------------+
 | .. image:: images/itcexample.jpg    |
@@ -561,7 +580,7 @@ Why still use ITC?
 Accurately quantify experimental uncertainty using Bayesian inference.
 ======================================================================
 
-The experimental parameters, θ
+The experimental parameters_, θ
 
 .. image:: images/colored_parameters.png
   :width: 50%
@@ -574,6 +593,8 @@ can be estimated using Bayes rule:
 * **P(θ\|D)** is the *posterior* distribution. The probability of the parameters given the observed data. *This is what we want to know!*
 * **P(D\|θ)** is the *likelihood*. The probability of the observed data, given a single set of parameters.
 * **P(θ)** are *prior* distributions, containing prior information. We can use this to propagate errors such as known errors in reagent concentrations.
+
+.. _parameters: index.html#/parameters
 
 ----
 
@@ -614,14 +635,20 @@ and to estimate the posterior, we can sample from it using techniques like *Mark
 Sampling from a posterior distribution using MCMC
 =================================================
 
-Markov Chain Monte Carlo
-------------------------
 
-.. figure:: images/mcmc.gif
+.. figure:: images/posteriors.png
   :width: 70%
+  :target: index.html#/postheats
 
-  http://mbjoseph.github.io/blog/2013/09/08/metropolis/
-  
+
+----
+
+Marginalize out other parameters to obtain uncertainties
+========================================================
+
+.. figure:: images/marginals.png
+  :width: 60%
+
 ----
 
 Making our tools accessible as a library
@@ -637,31 +664,11 @@ https://github.com/choderalab/bayesian-itc
 
 ----
 
-The uncertainty in the parameters
-=================================
-
-.. figure:: images/dHmcmc.png
-  :width: 700px
-  
-----
-
-Uncertainty in the data
-=======================
-
-Red dots • indicate observed data, violins depict the posterior distribution of each injection.
-The family of models that were sampled are shown as black curves.
-
-+--------------------------------------+
-| .. image:: images/postpredictive.png |
-|   :width: 70%                        |
-+--------------------------------------+
-
-----
 
 Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
 ================================================================================================================
 
-Using the Cucurbit[7]uril host-guest system, we will
+Using the *Cucurbit[7]uril host-guest system*, we will
 
 *1.1.* Develop an accurate approach to quantifying experimental uncertainty in ITC using Bayesian inference.
 
@@ -688,7 +695,7 @@ Quantify the magnitude of protonation state effects on binding
 We do not know every relevant protonation state a priori, and how relevant they are to the binding affinity.
 
 .. figure:: images/protonation.png
-  :width: 90%
+  :width: 80%
     
   *The pH dependent effect in lin-benzoguanines binding to tRNA−guanine transglycosylase*
     
@@ -700,33 +707,25 @@ Neeb et al. *J. Med. Chem.*, 2014, 57 (13), pp 5554–5565
 
 ----
 
-Protonation states may vary for kinase inhibitors
-=================================================
+Problems with the standard approach
+===================================
 
-Imatinib, a potent inhibitor of Abl kinase
-------------------------------------------
+1. If we observe significant mixtures of protonation states
 
+2. The distribution of protonation states change significantly upon binding
 
-.. figure:: images/imatinib_image_curve.png
-  :width: 50%
+Then the standard approach is **missing contributions of unknown magnitude**.
 
-Szakács, Z. et al. *J Med Chem* 2005, 48, 249–255
++-----------------------------------+----------------------------------+
+| .. image:: images/histidine.png   | .. image:: images/lapatinib.png  |
+|   :width: 90%                     |   :width: 50%                    |
+|                                   |                                  |
++-----------------------------------+----------------------------------+
 
-.. note::
-  Do not forget to mention that the protonated form of these inhibitors is charged
-
-----
-
-Protonation states may vary for kinase inhibitors
-=================================================
-
-Imatinib, a potent inhibitor of Abl kinase
-------------------------------------------
-
-.. image:: images/imatinib_sites.png
-  :width: 50%
+Our aim is to *extend our free energy calculation framework* to include dynamical protonation states, to accurately account for them in simulation.
 
 ----
+
 
 Protonation states may vary for kinase inhibitors
 =================================================
@@ -737,7 +736,7 @@ Imatinib, a potent inhibitor of Abl kinase
 
 +--------------------------------------+
 | .. image:: images/imatinib_sites.png |
-|   :width:  30%                       |
+|   :width:  35%                       |
 |                                      |
 +--------------------------------------+
 | .. image:: images/ima_cycle.png      |
@@ -768,22 +767,7 @@ Shelley, JC *J Comput -Aided Mol Des* 21, pp. 681–691 (2007)
 
 ----
 
-Problems with the standard approach
-===================================
 
-1. If we observe significant mixtures of protonation states
-
-2. The distribution of protonation states change significantly upon binding
-
-Then the standard approach is **missing contributions of unknown magnitude**.
-
-+-----------------------------------+----------------------------------+
-| .. image:: images/histidine.png   | .. image:: images/lapatinib.png  |
-|   :width: 90%                     |   :width: 50%                    |
-|                                   |                                  |
-+-----------------------------------+----------------------------------+
-
-----
 
 
 Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.
@@ -807,7 +791,11 @@ to quantify the effect of protonation state effects on the binding affinity of k
 
 * Using a simple tool, we want to survey them to narrow down to a set of max 100 complexes that show changes in the protonation state.
 
-* Once identified, we will use alchemical free energy calculations, extended to sample protonation states, and perform experiments to validate them.
+Once identified we will
+
+* Use alchemical free energy calculations, extended to sample protonation states to *quantify the contribution*
+ 
+* Perform ITC experiments to validate them.
 
 
 ----
@@ -820,17 +808,17 @@ Multi-conformation continuum electrostatic (MCCE)
 
 * It allows for random changes to the protonation state using Monte Carlo
 
-* We will extend the framework to incorporate sampling of ligands protonation states.
-
 +-------------------------------------+
 | .. image:: images/dGprotonation.png |
-|   :width: 500px                     |
+|   :width: 45%                       |
 |                                     |
 +-------------------------------------+
 | .. image:: images/mcce2_sharp.png   |
-|   :width: 400px                     |
+|   :width: 40%                       |
 |                                     |
 +-------------------------------------+
+
+Song, Y et al. *J Comput Chem* 30: 2231–2247 (2009)
 
 .. note::
   G elec is the electrostatic component of the free energy calculated for the titratable group in the protein,
@@ -872,17 +860,6 @@ Szakács Z, et al. *J Med Chem* 48, 249–255 (2005)
 
 ----
 
-The pKa tools we will consider
-==============================
-
-* **MoKa** generates pKa s based on atomistic descriptors, defined by the surrounding atoms. The descriptors are based on molecular interaction fields calculated using GRID for a library of 3D fragments, but can successfully be applied on 2D structures.
- 
-* Schrodinger’s **Jaguar** provides means of estimating pKa values using quantum mechanical methods.
- 
-* **Epik** uses Hammett Taft linear free energy approaches for predicting pKa values.
-
-----
-
 
 There are a lot of rough approximations in MCCE
 ===============================================
@@ -912,13 +889,10 @@ We will use alchemical free energy calculations to quantify
   * We will implement a Monte Carlo titration scheme
   
   +-------------------------------------+
-  | .. image:: images/dGprotonation.png |
+  | .. image:: images/acceptance_ph.png |
   |   :width:      50%                  |
   |                                     |
   +-------------------------------------+
-  
-  
-  * Perform complementary ITC experiments to validate the free energy calculations
   
 ----
 
@@ -1043,7 +1017,10 @@ Available free energy calculation tools focus on 1:1 interactions!
 ==================================================================
 
 .. image:: images/colored_PL.png
-  :width: 300px
+  :width: 40%
+
+We will *extend available free energy tools, as well as our ITC analysis* with a framework for multiple ligand association.
+
 
 ----
 
@@ -1102,43 +1079,10 @@ There will be **n+1** non-alchemical states, from 0, to **n** ligands bound.
 
 ----
 
-The stoichiometric free energy
-==============================
 
-The free energy is reduced to just receptor-ligand interactions
----------------------------------------------------------------
 
-The free energy (**gn**) is defined
-
-.. image:: images/colored_gn_semigrand.png
-  :width: 700px
-
-where **un** is a reduced potential energy, including just ligand-receptor interactions.
-
-.. image:: images/colored_un_semigrand.png
-  :width: 700px
-
-----
-
-The binding constants combined into a single polynomial
-=======================================================
-
-It can be shown when you define a polynomial of all binding constants **Kn**
-
-.. image:: images/colored_binding_poly.png
-  :width: 600px
-
-the free energy can be defined as such
-
-.. image:: images/colored_g_kt_lnq.png
-  :width: 300px
-
-**Q[L]** here is also referred to as the semi-grand canonical partition function.
-
-----
-
-Simulate ITC experiments from the semi-grand canonical ensemble
-===============================================================
+Simulate ITC experiments from calculated free energy and enthalpy
+=================================================================
 
 * We obtain free energy **g\_n** from alchemical free energy calculations, as well as the enthalpy (**h_n**)
 
@@ -1152,40 +1096,17 @@ Simulate ITC experiments from the semi-grand canonical ensemble
 
 ----
 
-Perform complimentary ITC experiments on HSA
-============================================
+Perform ITC experiments to validate
+===================================
 
-From the semi-grand canonical ensemble methodology, we can fit the polynomial as a function of ligand concentration
+After simulating ITC experiments, we will perform them to see if our computational predictions are correct.
 
-.. image:: images/colored_binding_poly.png
-  :width: 600px
+To do so, we will extend our existing library with models that can fit multiple binding constants.
 
-and use Bayesian inference to infer the value of the **Kn** coefficients.
-
-Using Bayesian model selection, we may select for the optimum number of coefficients to fit.
-  
-.. note::
-  Reversible jump
-
+.. image:: images/github.png
+  :width: 30%
 
 ----
-
-Bayesian experimental design
-============================
-
-* It might be hard to recapitulate the entire curve from a single ITC experiment
-
-* Higher order binding constants are expected to have large uncertainty
-
-* We can use Bayesian experimental design to suggest follow up experiments that increase our expectation
-
-.. note::
-  Especially if the site constants are very different in order of magnitude, we may need different experimental conditions
-
-  expected value of the log likelihood function, with respect to the conditional distribution of Z  given D under the current estimate of the parameters theta
-
-----
-
 
 Develop a framework for alchemical free energy calculations to describe weak association and cooperative ligand binding.
 ========================================================================================================================
@@ -1218,8 +1139,11 @@ We hope to have addressed each of these issuess adequately, in order to improve 
 
 ----
 
-That's all folks!
-=================
+Thanks for your attention!
+==========================
+
+----
+
 
 It is all about the binding affinity
 ====================================
@@ -1255,29 +1179,6 @@ This is known as the dissociation constant (**Kd**), often used synonymously wit
 
 ----
 
-:id: ewald-sum
-
-Ewald summation as a long range electrostatics approxmation
-===========================================================
-
-+-------------------------------------------------+-------------------------------------------------------------+
-| .. figure:: images/pbc_ewald.png                | .. figure:: images/ewald.png                                |
-|   :width: 300px                                 |   :width: 300px                                             |
-|                                                 |                                                             |
-|   An infinitely periodic system as a lattice.   |   Charges are additionally described with distributions.    |
-+-------------------------------------------------+-------------------------------------------------------------+
-
-.. note::
-  real space part: Ureal = 1/2 sum i=1 to N sum j=1 to N sum \|n\| =0 to infinity (qi qj)/(4pi eps0)  * erfc(alph \|rij + n\|)/ \|rij +n\|
-  
-  reciprocal space part: U_reci = 1/2 sum k \ne 0 sum i=1 to N sum j=1 to N (qi qj)/(4pi eps0)  4 pi^2 /k^2 exp (- k^2/4alph^2) cos(k*rij)
-  
-  subtract self term:  - \alpha/ sqr(pi) sum k=1 to n  q^2_k / (4pi eps0)
-  
-  correction if not tin foil: (2pi)/(3L^3) sum =1 to N (qi/(4pi eps0) ri )^2
-  
-
-----
 
 :id: rocklin
 
@@ -1300,7 +1201,7 @@ Reif-Oostenbrink
 Calculate the corrections in a thermodynamic cycle
 
 .. figure:: images/reif.png
-  :width: 300px
+  :width: 60%
   
 ----
 
@@ -1313,6 +1214,8 @@ Lin model
 :id: lin
 
 ----
+
+:id: weak
 
 Weak binding of fragments
 =========================
@@ -1331,7 +1234,7 @@ Consequences of the strong binding approximation
 ----
 
 
-:id: alchemical
+:id: alchem
 
 Alchemical free energy calculations
 ===================================
@@ -1379,8 +1282,30 @@ Zwanzig, RW, *J Chem Phys* 22, 1420 (1954)
 
 ----
 
-:id: ewald-detailed
 
+:id: ewald
+
+Ewald summation as a long range electrostatics approxmation
+===========================================================
+
++-------------------------------------------------+-------------------------------------------------------------+
+| .. figure:: images/pbc_ewald.png                | .. figure:: images/ewald.png                                |
+|   :width: 300px                                 |   :width: 300px                                             |
+|                                                 |                                                             |
+|   An infinitely periodic system as a lattice.   |   Charges are additionally described with distributions.    |
++-------------------------------------------------+-------------------------------------------------------------+
+
+.. note::
+  real space part: Ureal = 1/2 sum i=1 to N sum j=1 to N sum \|n\| =0 to infinity (qi qj)/(4pi eps0)  * erfc(alph \|rij + n\|)/ \|rij +n\|
+  
+  reciprocal space part: U_reci = 1/2 sum k \ne 0 sum i=1 to N sum j=1 to N (qi qj)/(4pi eps0)  4 pi^2 /k^2 exp (- k^2/4alph^2) cos(k*rij)
+  
+  subtract self term:  - \alpha/ sqr(pi) sum k=1 to n  q^2_k / (4pi eps0)
+  
+  correction if not tin foil: (2pi)/(3L^3) sum =1 to N (qi/(4pi eps0) ri )^2
+  
+
+----
 
 Ewald summation
 ===============
@@ -1488,6 +1413,8 @@ Szakács Z, et al. *J Med Chem* 48, 249–255 (2005)
 
 ----
 
+:id: enrichment
+
 Docking can provide enrichment in top 10 scores
 ===============================================
 
@@ -1496,6 +1423,132 @@ Docking can provide enrichment in top 10 scores
 
 Warren et al. *J Med Chem* 49 (20), pp 5912–5931 (2006)
 
+
+----
+
+:id: postheats
+
+Uncertainty in the data
+=======================
+
+Red dots • indicate observed data, violins depict the posterior distribution of each injection.
+The family of models that were sampled are shown as black curves.
+
++--------------------------------------+
+| .. image:: images/postpredictive.png |
+|   :width: 70%                        |
++--------------------------------------+
+
+----
+
+Protonation states may vary for kinase inhibitors
+=================================================
+
+Imatinib, a potent inhibitor of Abl kinase
+------------------------------------------
+
+
+.. figure:: images/imatinib_image_curve.png
+  :width: 50%
+
+Szakács, Z. et al. *J Med Chem* 2005, 48, 249–255
+
+.. note::
+  Do not forget to mention that the protonated form of these inhibitors is charged
+
+----
+
+Protonation states may vary for kinase inhibitors
+=================================================
+
+Imatinib, a potent inhibitor of Abl kinase
+------------------------------------------
+
+.. image:: images/imatinib_sites.png
+  :width: 50%
+
+----
+
+
+The pKa tools we will consider
+==============================
+
+* **MoKa** generates pKa s based on atomistic descriptors, defined by the surrounding atoms. The descriptors are based on molecular interaction fields calculated using GRID for a library of 3D fragments, but can successfully be applied on 2D structures.
+ 
+* Schrodinger’s **Jaguar** provides means of estimating pKa values using quantum mechanical methods.
+ 
+* **Epik** uses Hammett Taft linear free energy approaches for predicting pKa values.
+
+----
+
+
+The stoichiometric free energy
+==============================
+
+The free energy is reduced to just receptor-ligand interactions
+---------------------------------------------------------------
+
+The free energy (**gn**) is defined
+
+.. image:: images/colored_gn_semigrand.png
+  :width: 700px
+
+where **un** is a reduced potential energy, including just ligand-receptor interactions.
+
+.. image:: images/colored_un_semigrand.png
+  :width: 700px
+
+----
+
+
+The binding constants combined into a single polynomial
+=======================================================
+
+It can be shown when you define a polynomial of all binding constants **Kn**
+
+.. image:: images/colored_binding_poly.png
+  :width: 600px
+
+the free energy can be defined as such
+
+.. image:: images/colored_g_kt_lnq.png
+  :width: 300px
+
+**Q[L]** here is also referred to as the semi-grand canonical partition function.
+
+----
+
+Perform complimentary ITC experiments on HSA
+============================================
+
+From the semi-grand canonical ensemble methodology, we can fit the polynomial as a function of ligand concentration
+
+.. image:: images/colored_binding_poly.png
+  :width: 600px
+
+and use Bayesian inference to infer the value of the **Kn** coefficients.
+
+Using Bayesian model selection, we may select for the optimum number of coefficients to fit.
+  
+.. note::
+  Reversible jump
+
+
+----
+
+Bayesian experimental design
+============================
+
+* It might be hard to recapitulate the entire curve from a single ITC experiment
+
+* Higher order binding constants are expected to have large uncertainty
+
+* We can use Bayesian experimental design to suggest follow up experiments that increase our expectation
+
+.. note::
+  Especially if the site constants are very different in order of magnitude, we may need different experimental conditions
+
+  expected value of the log likelihood function, with respect to the conditional distribution of Z  given D under the current estimate of the parameters theta
 
 ----
 

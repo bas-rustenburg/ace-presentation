@@ -16,7 +16,7 @@ div#title img {
 
 /* properties for every slide */
 .step {
-  width: 1024px;
+  width: 999px;
   /*height:600px */ }
   .step .notes {
     display: none; }
@@ -60,20 +60,24 @@ h4, p {
   color: #fcfcfc; }
 
 a:link {
-  color: #f79563; }
+  color: white;
+  text-decoration: none; }
 
 /* visited link */
 a:visited {
-  color: #88fa3c; }
+  color: white;
+  text-decoration: none; }
 
 /* mouse over link */
 a:hover {
-  color: #E8E195; }
+  color: #f79563;
+  text-decoration: none; }
 
 /* selected link */
 a:active {
   color: #828282;
-  background-color: #FEFEFE; }
+  background-color: #FEFEFE;
+  text-decoration: none; }
 
 body {
   font-family: "Neutraface 2 Text", sans-serif;
