@@ -16,12 +16,12 @@ div#title img {
 
 /* properties for every slide */
 .step {
-  width: 800px;
+  width: 1024px;
   /*height:600px */ }
   .step .notes {
     display: none; }
 
-img[src="images/histidine.png"], img[src="images/ewald.png"], img[src="images/extinction_mirg.png"], img[src="images/abrf_mirg.png"], img[src="images/normal.png"], img[src="images/alchem_aims.png"], img[src="images/distributions.png"], img[src="images/alchem.png"], img[src="images/imatinib_image_curve.png"], img[src="images/reif_oostenbrink.png"], img[src="images/Kd_guest2.png"] {
+img[src="images/enrichment.gif"], img[src="images/histidine.png"], img[src="images/ewald.png"], img[src="images/extinction_mirg.png"], img[src="images/abrf_mirg.png"], img[src="images/normal.png"], img[src="images/alchem_aims.png"], img[src="images/distributions.png"], img[src="images/alchem.png"], img[src="images/imatinib_image_curve.png"], img[src="images/reif_oostenbrink.png"], img[src="images/Kd_guest2.png"] {
   background: #FFF; }
 
 /*Center table on page */
@@ -36,7 +36,7 @@ img {
 
 /* table spacing between columns */
 td {
-  padding: 10px;
+  padding: 2%;
   margin: 0 auto; }
 
 h1, strong {
@@ -47,10 +47,13 @@ h1 {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #efefef; }
 
-h2, em {
-  color: #88fa3c; }
+h2 {
+  margin: 0; }
 
-h3 {
+h2 {
+  color: #fff; }
+
+h3, em {
   color: #f79563; }
 
 h4, p {
@@ -75,7 +78,7 @@ a:active {
 body {
   font-family: "Neutraface 2 Text", sans-serif;
   min-height: 740px;
-  font-size: 140%;
+  font-size: 170%;
   color: #fcfcfc;
   background: #828282;
   background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#828282), to(#383838));

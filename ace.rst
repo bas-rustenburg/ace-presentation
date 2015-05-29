@@ -37,7 +37,7 @@ Date : 5/29
 
 .. image:: images/background.png
   :align: center
-  :width: 800px
+  :width: 90%
 
 ----
 
@@ -47,22 +47,21 @@ The efficiency of the pharmaceutical industry has been declining for years
 
 
 .. figure:: images/erooms.jpg
-  :width: 600px
+  :width: 90%
   
   Kack W. Scannell et al. *Nature Reviews Drug Discovery* 11, 191-200 (2012)
 
 ----
 
-It takes up to 4 million dollars, just to find a molecule that binds a target!
-==============================================================================
+It takes up to 4.5 years and 219 million dollars to develop a potent binder
+===========================================================================
 
-.. figure:: images/drug_disc.jpg
-  :width: 600px
+.. figure:: images/drug_disc_cost.png
+  :width: 90%
   
-  Allen D. Roses  *Nature Reviews Drug Discovery* 7, 807-817 (2008)
-
+  Paul, SM, et al. *Nature Reviews Drug Discovery* 9, 203-214 (2010)
+  
   Each consecutive step only gets more expensive!
-
 
 ----
 
@@ -73,14 +72,20 @@ There is a clear need for a cheaper strategy
 Computational approaches offer a cheap solution
 -----------------------------------------------
 
-* They benefit from Moore's law, with increased computational efficiency each year
+* They benefit from Moore's law, with *increased computational efficiency each year*
 
-* Allows for a *fail fast, fail cheaply* methodology for designing drugs
-    * Drugs that do not bind the intended target can fail earlier, without a huge R&D investment
+* Ability to study *hypothetical small molecules*
 
-* Ability to study hypothetical small molecules
+* Allow for *faster* and *cheaper* generation of drug candidates
+  
+  * More leads to follow in the later stage, reducing failure rate.
+
 
 .. note::
+  Give us more chances to hit our target.
+  
+  Maybe some leads will be toxic, of have ADME issues
+   
   For instance,
   * compounds that have not been synthesized.
   * when protein is expensive.
@@ -91,57 +96,22 @@ Computational approaches offer a cheap solution
 It is all about the binding affinity
 ====================================
 
-A strong binder maximizes the ratio of complex concentration (**[PL]**) over free protein (**[P]**) and ligand (**[L]**).
-
-This is known as the association constant (**Ka**).
-
-+-------------------------------------+
-| .. image:: images/colored_PL.png    |
-|   :width: 300px                     |
-+-------------------------------------+
-| .. image:: images/colored_Ka_Kd.png |
-|   :width: 600px                     |
-+-------------------------------------+
-
-----
-
-It is all about the binding affinity
-====================================
-
-A strong binder minimizes the ratio of free protein (**[P]**) and ligand (**[L]**) over complex concentration (**[PL]**).
-
-This is known as the dissociation constant (**Kd**), often used synonymously with the binding affinity.
-
-+-------------------------------------+
-| .. image:: images/colored_PL.png    |
-|   :width: 300px                     |
-+-------------------------------------+
-| .. image:: images/colored_Kd_Ka.png |
-|   :width: 600px                     |
-+-------------------------------------+
-
-----
-
-
-It is all about the binding affinity
-====================================
-
 A strong binder minimizes the ratio of free protein (**[P]**) and ligand (**[L]**) over complex concentration (**[PL]**).
 
 This is known as the dissociation constant (**Kd**), often used synonymously with the binding affinity.
 
 This can be related to the free energy of binding, **ΔG**.
 
-+-------------------------------------+
-| .. image:: images/colored_PL.png    |
-|   :width: 300px                     |
-+-------------------------------------+
-| .. image:: images/colored_Kd_Ka.png |
-|   :width: 600px                     |
-+-------------------------------------+
-| .. image:: images/colored_Kd.png    |
-|   :width: 500px                     |
-+-------------------------------------+
++--------------------------------------+
+| .. image:: images/colored_PL.png     |
+|   :width: 50%                        |
++--------------------------------------+
+| .. image:: images/colored_kdkoff.png |
+|   :width: 70%                        |
++--------------------------------------+
+| .. image:: images/colored_Kd.png     |
+|   :width: 60%                        |
++--------------------------------------+
 
 ----
 
@@ -152,9 +122,9 @@ Molecular docking for affinity estimation
 
 +----------------------------------------------+------------------------------------------------------------+
 | .. figure:: images/docking.gif               | .. figure:: images/scoring.jpg                             |
-|   :width: 300px                              |   :width: 400px                                            |
+|   :width: 90%                                |   :width: 90%                                              |
 |                                              |                                                            |
-|   Molecule is inserted into a rigid receptor |   Free energy is estimated by some arbitrary scoring terms |
+|   Molecule is docked into a rigid receptor   |   Free energy is estimated by a scoring function.          |
 +----------------------------------------------+------------------------------------------------------------+
 
 ----
@@ -162,12 +132,14 @@ Molecular docking for affinity estimation
 Docking does not provide accurate estimates
 ===========================================
 
-
-.. figure:: images/docking.png
-  :width: 600px
++---------------------------------+
+| .. figure:: images/docking.png  |
+|   :width: 60%                   |
+|                                 |
++---------------------------------+
   
   *For prediction of compound affinity, none of the docking programs or scoring functions made
-  a useful prediction of ligand binding affinity.*
+  a useful prediction of ligand binding affinity.* At most, the top 10-20% cores shows an enrichment in binders.
   
   Warren et al. *J Med Chem* 49 (20), pp 5912–5931 (2006)
 
@@ -176,39 +148,28 @@ Docking does not provide accurate estimates
 
 :id: deshaw
 
-If your name is DE Shaw
-=======================
+If you have a fast super-computer
+=================================
 
-You can simulate binding events from microsecond timescale MD simulations
--------------------------------------------------------------------------
+You can simulate binding in from *microsecond timescale* MD simulations.
+
 
 .. image:: images/deshaw2.gif
 
-For typical drug off-rates (1/10 000 seconds), trajectories would need to be impractically long (hours), requiring ~100 million CPU-years to simulate.
+For typical drug off-rates, trajectories would need to be impractically long (hours), requiring ~100 million CPU-years to simulate.
+
+.. note::
+  imatinib to abl:
+   * kon 0.146 uM s-1
+   * koff 0.0022 s-1 (1/500s)
+   
+   Say we need 100 events. 50 000 seconds needed
+   (50 000 seconds) / (100 (nanoseconds / gpu days)) =
+   1.36895463 billion gpu years
+  
+   
 
 ----
-
-
-:id: alchemical
-
-Alchemical free energy calculations
-===================================
-
-Why?
-----
-
-They allow efficient sampling of the relevant states of protein-ligand complexes.
-
-.. image:: images/colored_PL.png
-  :width: 300px
-
-www.alchemistry.org
-
-
-----
-
-
-
 
 Alchemical free energy calculations
 ===================================
@@ -218,39 +179,32 @@ Alchemical free energy calculations
 
 +------------------------------------------------+
 | .. image:: images/colored_Kd.png               |
-|   :width: 300px                                |
+|   :width: 60%                                  |
 +------------------------------------------------+
 | .. image:: images/alchemical_intermediates.png |
-|   :width: 750px                                |
+|   :width: 80%                                  |
 +------------------------------------------------+
 
 Chodera, JD et al. *Curr Opin Struct Biol*, 21:150 (2011)
 
 ----
 
-Alchemical free energy calculations
-===================================
+Successful applications
+=======================
 
-Alchemical methods allow for phase space overlap
-------------------------------------------------
+Schrodinger has shown that their free energy calculation framework can calculate binding free energies that are:
+ 
+ * Close to experimental estimates
+ 
+ * Transferrable to several different systems
+ 
 
-+--------------------------------------+--------------------------------------+
-| .. figure:: images/normal_states.png | .. figure:: images/alchem_states.png |
-|   :width: 370px                      |   :width: 370px                      |
-+--------------------------------------+--------------------------------------+
-| .. figure:: images/colored_zwanzig.png                                      |
-|   :width: 400px                                                             |
-+-----------------------------------------------------------------------------+
+.. figure:: images/schrodinger.jpg
+  :width: 60%
 
-Wu, D and Kofke, DA *J Chem Phys* 123: 054103 (2005).
 
-Zwanzig, RW, *J Chem Phys* 22, 1420 (1954)
 
-.. note::
-  You can interpret the equation as follows. We sample from state A, but use this to sample state B.
-  To unbias the samples, we remove a factor of exp(-beta U_A), and reweight by adding a factor of exp(-beta U_B).
-  If you sample A, the states might correspond to mostly high energy states in b, where the exponent of -U_B is very small,
-  meaning little contribution to the free energy. Therefore, your estimate converges very slowly.
+Wang, L et al. *J Am Chem Soc* 137 (7), pp 2695–2703 (2015)
 
 ----
 
@@ -259,6 +213,8 @@ Alchemical free energy calculations
 
 There are deficiencies that need to be addressed before alchemical free energy calculations can be applied widely.
 
+.. image:: images/alchem_aims_red.png
+  :width: 95%
 
 ----
 
@@ -270,51 +226,69 @@ Alchemical free energy calculations
 
 There are deficiencies that need to be addressed before alchemical free energy calculations can be applied widely.
 
-.. image:: images/alchem_aims_red.png
-  :width: 800px
+.. image:: images/alchem_aims_mols.png
+  :width: 95%
 
 
 ----
+
 
 Alchemical free energy calculations
 ===================================
 
 There are deficiencies that need to be addressed before alchemical free energy calculations can be applied widely.
 
-.. image:: images/alchem_aims_charge.png
-  :width: 800px
+.. image:: images/alchem_aims_red.png
+  :width: 95%
+  
+
+We will resolve deficiencies by using a combination of *theory* and *experiments*.
 
 
 ----
 
-Charged ligands include
-=======================
+:id: aim1
+
+Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
+================================================================================================================
+Aim 1.
+------
+
+.. image:: images/alchem_aims_charge.png
+  :width: 95%
+
+
+----
+
+
+Disease relevant charged ligands
+================================
 
 +-----------------------------------+-----------------------------------+
 | .. figure:: images/saquinavir.png | .. figure:: images/nelfinavir.png |
-|   :height: 200px                  |   :height: 400px                  |
+|   :width:  50%                    |   :width:  60%                    |
 |                                   |                                   |
 |   Saquinavir                      |   Nelfinavir                      |
 +-----------------------------------+                                   +
 | .. figure:: images/indinavir.png  |                                   |
-|   :height: 200px                  |                                   |
+|   :width:  50%                    |                                   |
 |                                   |                                   |
 |   Indinavir                       |                                   |
 +-----------------------------------+-----------------------------------+
 
-Protease inhibitors typically have positive charges. Here are three FDA approved *HIV-protease inhibitors*.
+Protease inhibitors typically have positive charges. For instance these FDA approved *HIV-protease inhibitors*.
 
 (image source: www.chemicalize.org)
 
 
 ----
 
-Charged ligands include
-=======================
+Disease relevant charged ligands
+================================
 
 +--------------------------------+----------------------------------+
 | .. figure:: images/aspirin.png | .. figure:: images/ibuprofen.png |
-|   :height: 350px               |   :height: 350px                 |
+|   :width:  50%                 |   :width:  50%                   |
 |                                |                                  |
 |   Aspirin                      | Ibuprofen                        |
 +--------------------------------+----------------------------------+
@@ -325,41 +299,23 @@ Many over-the-counter *nonsteroidal anti-inflammatory drugs* have charged moieti
 
 ----
 
-
-Charged ligands include
-=======================
-
-Anti-histamines
----------------
-
-+--------------------------------------------------------------------------------+
-| .. figure:: images/histamine.png                                               |
-|   :width: 200px                                                                |
-|                                                                                |
-|   Histamine                                                                    |
-+--------------------------------------------------------------------------------+
-
-(image source: www.chemicalize.org)
-
-----
-
-Charged ligands include
-=======================
+Disease relevant charged ligands
+================================
 
 Anti-histamines
 ---------------
 
-+-----------------------------------------+--------------------------------------+
-| .. figure:: images/diphenhydramine.png  | .. figure:: images/clemastine.png    |
-|   :width: 250px                         |   :width: 200px                      |
-|                                         |                                      |
-|   Benadryl (diphenhydramine)            |   Tavist (clemastine)                |
-+-----------------------------------------+--------------------------------------+
-| .. figure:: images/azelastine.png       | .. figure:: images/hydroxyzine.png   |
-|   :width: 200px                         |   :width: 350px                      |
-|                                         |                                      |
-|   Astelin (azelastine)                  |   Atarax (hydroxyzine)               |
-+-----------------------------------------+--------------------------------------+
++----------------------------------+-----------------------------------------+
+| .. figure:: images/histamine.png | .. figure:: images/diphenhydramine.png  |
+|   :width: 70%                    |   :width: 40%                           |
+|                                  |                                         |
+|   Histamine                      |   Benadryl (diphenhydramine)            |
+|                                  +-----------------------------------------+
+|                                  | .. figure:: images/azelastine.png       |
+|                                  |   :width: 40%                           |
+|                                  |                                         |
+|                                  |   Astelin (azelastine)                  |
++----------------------------------+-----------------------------------------+
 
 
 (image source: www.chemicalize.org)
@@ -367,268 +323,50 @@ Anti-histamines
 
 ----
 
-Alchemical free energy calculations
-===================================
+Why are there issues with in charged ligands?
+=============================================
 
-There are deficiencies that need to be addressed before alchemical free energy calculations can be applied widely.
+Bulk liquids are huge, therefore, a number of approximations are made:
 
-.. image:: images/alchem_aims_protonation.png
-  :width: 800px
+* Periodic boundary conditions, or implicit solvents
 
+* Truncating electrostatic potentials (cut-offs)
 
-----
-
-Protonation states may vary for kinase inhibitors
-=================================================
-
-EGFR inhibitors lapatinib and gefitinib
----------------------------------------
-
-+----------------------------------+----------------------------------+
-| .. figure:: images/lapatinib.png | .. figure:: images/gefitinib.png |
-|   :width: 300px                  |   :width: 300px                  |
-|                                  |                                  |
-|   Lapatinib                      |   Gefitinib                      |
-+----------------------------------+----------------------------------+
-
-Many FDA approved kinase inhibitors have titratable moieties with pKas near 7.
-
-(image source: www.chemicalize.org)
-
-.. note::
-
-  These two drugs are EGFR/Her2 inhibitors, important in lung and breast cancers
-  (Non small cell lung cancer)
+* Non-coulombic long-range electrostatics
   
-----
-
-Protonation states may vary for kinase inhibitors
-=================================================
-
-Imatinib, a potent inhibitor of Abl kinase
-------------------------------------------
-
-
-.. figure:: images/imatinib_image_curve.png
-  :width: 550px
-
-Szakács, Z. et al. *J Med Chem* 2005, 48, 249–255
-
-.. note::
-  Do not forget to mention that the protonated form of these inhibitors is charged
-
-----
-
-
-
-Alchemical free energy calculations
-===================================
-
-There are deficiencies that need to be addressed before alchemical free energy calculations can be applied widely.
-
-.. image:: images/alchem_aims_multi.png
-  :width: 800px
-
-----
-
-Binding of multiple ligands to a single target
-==============================================
-
-.. figure:: images/HSA.png
-  :width: 600px
-  
-  A summary of human serum albumin (HSA) crystal structures bound to small molecules.
-
-  Ghuman, J et al. *J Mol Biol* 2005, 353, 38–52
-
-----
-
-Binding of multiple ligands to a single target
-==============================================
-
-.. figure:: images/HSA_drugsites.png
-  :width: 600px
-  
-  A summary of human serum albumin (HSA) crystal structures bound to small molecules.
-
-  Ghuman, J et al. *J Mol Biol* 2005, 353, 38–52
-
-----
-
-Binding of multiple ligands to a single target
-==============================================
-
-Human serum albumin
--------------------
-
-.. figure:: images/HSA_extrasites.png
-  :width: 600px
-  
-  A summary of human serum albumin (HSA) crystal structures bound to small molecules.
-
-  Ghuman, J et al. *J Mol Biol* 2005, 353, 38–52
-
-----
-
-Binding of multiple ligands to a single target
-==============================================
-
-Fragment based drug discovery
------------------------------
-
-+--------------------------------------------------+-------------------------------------------+
-| .. figure:: images/hts.jpg                       | .. figure:: images/fbdd.jpg               |
-|   :width: 300px                                  |   :width: 350px                           |
-|                                                  |                                           |
-|   A conventional high-throughput screening hit.  |   A fragment hit that is later optimized. |
-+--------------------------------------------------+-------------------------------------------+
-
-Rees, DC et al. *Nature Reviews Drug Discovery* 2004, 3, 660-67
-
-----
-
-Binding of multiple ligands to a single target
-==============================================
-
-Fragment based drug discovery
------------------------------
-
-At high concentrations, multiple fragments can bind to a protein
-................................................................
-
-The binding of 3 fragments to p38a kinase.
-
-+------------------------------------------+--------------------------------------+
-| .. figure:: images/fragment_p38_4ehv.png | .. figure:: images/fragment_4ehv.png |
-|   :width: 400px                          |   :width: 200px                      |
-|                                          |                                      |
-|   PDB: 4EHV                              |   PDB: 0SJ                           |
-|                                          |                                      |
-+------------------------------------------+--------------------------------------+
-
-Over B et al. *Nat Chem* 2013 Jan;5(1):21-8
-
-----
-
-Weak binding of fragments
-=========================
-
-Consequences of the strong binding approximation
-------------------------------------------------
-
-+---------------------------------------+-----------------------------------+
-| .. figure:: images/gilson.png         | .. figure:: images/squarewell.png |
-|   :width: 400px                       |   :width: 300px                   |
-+---------------------------------------+-----------------------------------+
-| .. figure:: images/strong_binding.png |                                   |
-|   :width: 400px                       |                                   |
-+---------------------------------------+-----------------------------------+
-
-----
-
-
-:id: aim1
-
-Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
-================================================================================================================
-Aim 1.
-------
-
-.. image:: images/alchem_aims_charge.png
-  :width: 800px
-
-
-----
-
-Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
-================================================================================================================
-Aim 1.
---------
+  * Ewald summation (or particle mesh Ewald, PME)
+  * Reaction field models (RF)
 
 .. figure:: images/reif_oostenbrink.png
   
-  Bulk liquids are approximated in simulation, either by using periodic boundary conditions, or an implicit solvent.
-  Often, to further reduce computation cost, we introduce truncated,potentials and non-Coulombic electrostatics (such as **particle mesh Ewald** [PME],and **reaction field** [RF] potentials).
-
 Reif, MM  and Oostenbrink, C  *J Comput Chem*  35.3  pp. 227–243 (2013)
 
-
 ----
 
-Ewald summation as a long range electrostatics approxmation
-===========================================================
-
-+-------------------------------------------------+-------------------------------------------------------------+
-| .. figure:: images/pbc_ewald.png                | .. figure:: images/ewald.png                                |
-|   :width: 300px                                 |   :width: 300px                                             |
-|                                                 |                                                             |
-|   An infinitely periodic system as a lattice.   |   Charges are additionally described with distributions.    |
-+-------------------------------------------------+-------------------------------------------------------------+
-
-.. note::
-  real space part: Ureal = 1/2 sum i=1 to N sum j=1 to N sum \|n\| =0 to infinity (qi qj)/(4pi eps0)  * erfc(alph \|rij + n\|)/ \|rij +n\|
-  
-  reciprocal space part: U_reci = 1/2 sum k \ne 0 sum i=1 to N sum j=1 to N (qi qj)/(4pi eps0)  4 pi^2 /k^2 exp (- k^2/4alph^2) cos(k*rij)
-  
-  subtract self term:  - \alpha/ sqr(pi) sum k=1 to n  q^2_k / (4pi eps0)
-  
-  correction if not tin foil: (2pi)/(3L^3) sum =1 to N (qi/(4pi eps0) ri )^2
-  
-
-----
-
-Ewald summation
-===============
+Issues arrising from using Ewald summation
+==========================================
 
 Neutralizing the system charge
 ------------------------------
 
 There is an effective system neutralizing charge, called jellium/gellium.
 
-This system wide charge density ρ depends on the box size, L.
-
-+-------------------------------------------------+-------------------------------------------------------------------+
-| .. figure:: images/pbc_ewald.png                | .. figure:: images/colored_gellium.png                            |
-|   :width: 300px                                 |   :width: 400px                                                   |
-|                                                 |                                                                   |
-|   An infinitely periodic system as a lattice.   |   The charge density in the system is a function of the box size. |
-+-------------------------------------------------+-------------------------------------------------------------------+
-
-Here, **k** stands for the different boxes in the lattice, and **i** indicates individual point charges **q\_i**, with their position vectors **r⃗**.
-
-----
-
-
-
-Ewald summation
-===============
-
-Neutralizing the system charge
-------------------------------
-
-There is an effective system neutralizing charge, called jellium/gellium.
-
-This system wide charge density ρ depends on the box size, L.
+This system wide charge density **ρ** depends on the box size, **L**.
 
 +---------------------------------------------------------+-------------------------------------------------------------------+
 | .. figure:: images/box_sizes.png                        | .. figure:: images/colored_gellium.png                            |
-|   :width: 300px                                         |   :width: 400px                                                   |
+|   :width: 50%                                           |   :width: 90%                                                     |
 |                                                         |                                                                   |
 |   The charge density differs between complex and ligand |   The charge density in the system is a function of the box size. |
 |   because of a net charge change and the box size.      |                                                                   |
 +---------------------------------------------------------+-------------------------------------------------------------------+
 
+Lin YL et al. *J Chem Theory Comput* 10.7, pp. 2690–2709. (2014)
+
 ----
 
-
-
-:id: aim1-corrections
-
-
-Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
-================================================================================================================
-Aim 1.
-------
+What can be done to resolve the issues?
+=======================================
 
 A number of corrections have been proposed but:
  * They have not been compared to each other
@@ -641,7 +379,7 @@ A number of corrections have been proposed but:
 
 Sources:
  - Reif MM and Oostenbrink C *J Comput Chem* 35.3 , pp. 227–243 (2013)
- - Rocklin Gj et al. *J Chem Phys* 139.18 , p. 184103. (2013)
+ - Rocklin GJ et al. *J Chem Phys* 139.18 , p. 184103. (2013)
  - Lin YL et al. *J Chem Theory Comput* 10.7, pp. 2690–2709. (2014)
 
 ----
@@ -657,30 +395,30 @@ We will consider these approaches:
 * Lin et al. use potential of mean force (PMF) calculations in a large simulation system, pulling the ligand away from the protein non-alchemically.
 * Eliminating a pair of ions, with a net charge of **0**.
 
-We will first check if the methods produce the same quantitative estimate.
-Next, we will compare to experiment, to see if they produce a quantitatively correct answer.
+1. We will check if the methods produce the *same quantitative estimate*.
+
+2. We will compare to experiment, to see if they produce a *quantitatively correct answer*.
 
 This is the first comparison of any of these methods on the same system!
 
 ----
 
-(Backup) Slides on individual corrections
-=========================================
-
-----
-
-The host-guest model system
-===========================
+What system will we use to test?
+================================
 
 Cucurbit-\[7\]-uril as a model system
 -------------------------------------
 
-
 +-----------------------------------+------------------------------------+
 | .. image:: images/guest11_top.png | .. image:: images/guest11_side.png |
-|   :width: 200px                   |   :width: 200px                    |
+|   :width: 50%                     |   :width: 50%                      |
 |                                   |                                    |
 +-----------------------------------+------------------------------------+
+
+.. note::
+  
+  *It binds cationic guests*
+  
 
 ----
 
@@ -692,45 +430,42 @@ Hosts are the active component in Febreze!
 
 ----
 
-
-The host-guest model system
-===========================
-
-
-We will use cucurbit-\[7\]-uril as a model system
+Cucurbit-\[7\]-uril as a model system
+=====================================
 
 +-----------------------------------+------------------------------------+----------------------------------------------------------------------------------+
 | .. image:: images/guest11_top.png | .. image:: images/guest11_side.png | The system is useful because:                                                    |
-|   :width: 200px                   |   :width: 200px                    |                                                                                  |
+|   :width: 70%                     |   :width: 70%                      |                                                                                  |
 |                                   |                                    | * Both guest and hosts are very soluble                                          |
 +-----------------------------------+------------------------------------+ * They are small, with few degrees of freedom                                    +
 | .. image:: images/Kd_guest2.png                                        | * The affinities are in the range of typical protein-small molecule interactions |
-|   :width: 410px                                                        |                                                                                  |
+|   :width: 70%                                                          |                                                                                  |
 +------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 
 ----
 
-
 Experimental validation
 =======================
 
-* We will use *alchemical free energy calculations* to predict binding free energies, while we compare various approaches to each other
+In order to *quantitatively validate the free energy correction methods*, we will be performing experiments to measure the free energy of binding.
 
-* At the same time, we will perform *isothermal titration calorimetry* (ITC) experiments that can validate the different corrections.
+* We will perform *isothermal titration calorimetry* (ITC) experiments that can validate the different corrections.
 
+* ITC experiments are very compatible with free energy calculations because you *directly measure thermodynamic characteristics* of binding
+
+  * The *free energy*, and *enthalpy*
 
 ----
 
-Isothermal titration calorimety
-===============================
+ITC experiments
+===============
 
-The instrument
---------------
+Host-guest data have a high signal to noise because of the solubility, making it excellent for a quantitative test of our approach.
 
-+-------------------------------------+
-| .. image:: images/itcinstrument.jpg |
-|   :width: 400px                     |
-+-------------------------------------+
++--------------------------------------+-------------------------------------+
+| .. image:: images/itcexp.png         | .. image:: images/itcinstrument.jpg |
+|   :width: 90%                        |   :width: 90%                       |
++--------------------------------------+-------------------------------------+
 
 Zhou et al. *Nature Protocols* 6, 158–165 (2011)
 
@@ -739,43 +474,25 @@ Zhou et al. *Nature Protocols* 6, 158–165 (2011)
 Isothermal titration calorimety
 ===============================
 
-The data obtained
------------------
+Analysis
+---------
 
-+-------------------------------------+
-| .. image:: images/itcinstrument.jpg |
-|   :width: 200px                     |
-+-------------------------------------+
-| .. image:: images/itcexample.jpg    |
-|   :width: 650px                     |
-+-------------------------------------+
-
-Zhou et al. *Nature Protocols* 6, 158–165 (2011)
-http://www.biochemistry.ucla.edu/biochem/shared/instruments/Isothermal.html
-
-----
-
-
-Isothermal titration calorimety
-===============================
-
-The data obtained
------------------
-
-The heats are fit to the equation
-
-.. image:: images/colored_Qi.png
-  :width: 400px
-
-which describes the total heat after **i** injections.
+Parameters are fit to the integrated peaks
+..........................................
 
 +-------------------------------------+
 | .. image:: images/itcexample.jpg    |
-|   :width: 650px                     |
+|   :width: 90%                       |
 +-------------------------------------+
 
-Zhou et al. *Nature Protocols* 6, 158–165 (2011)
 http://www.biochemistry.ucla.edu/biochem/shared/instruments/Isothermal.html
+
+.. note::
+  The heats are fit to the equation
+
+  Qi = V * n * H * [PL]
+  deltaQ is heat per injection
+
 
 ----
 
@@ -787,19 +504,24 @@ There are some issues with the standard analysis...
 
 ----
 
-Binding of CBS to carbonic anhydrase
-====================================
+Binding of CBS to bovine carbonic anhydrase II
+==============================================
 
-Observations from tbe ABRF-MIRG'02 study
+Observations from the ABRF-MIRG'02 study
 ----------------------------------------
 
-+-------------------------------------+-------------------------------------+
-| .. figure:: images/abrf_mirg.png    | .. image:: images/itcexample_r.jpg  |
-|   :width: 500px                     |   :width: 250px                     |
-+-------------------------------------+-------------------------------------+
++-------------------------------------+--------------------------------------+
+| .. figure:: images/abrf_mirg.png    | .. figure:: images/itcexample_r.jpg  |
+|   :width: 70%                       |   :width: 110%                       |
++-------------------------------------+--------------------------------------+
 
   
-  Myszka DG et al. *J Biomol Tech* 2003 Dec; 14(4):247-69
+Myszka DG et al. *J Biomol Tech* 2003 Dec; 14(4):247-69
+
+.. note::
+  Association of Biomolecular Resource Facilities
+  
+  CBS stands for 4-carboxybenzenesulfonamide
 
 ----
 
@@ -809,45 +531,29 @@ Observed errors can directly be correlated to errors in concentration
 The extinction coefficient
 
 .. figure:: images/extinction_mirg.png
-  :width: 400px
+  :width: 40%
 
 From the Lambert-Beer law:
   .. figure:: images/colored_extinction.png
-    :width: 150px
+    :width: 30%
     
 where A is absorbance, c is concentration and l is the pathlength
 
 ----
 
-If there are so many issues...
-==============================
-
 Why still use ITC?
-------------------
+==================
 
-----
+* No approximations/assumptions needed to access *thermodynamic properties* of a binding reaction
 
-Isothermal titration calorimetry
-================================
+    * Therefore, they can be directly related to alchemical free energy calculations!
 
-* Gives direct access to the thermodynamic properties of a binding reaction, directly related to alchemical free energy calculations!
-  
-  * You can obtain both the enthalpy and free energy
 * There is no need for fluorescent scaffolds or tags
+
 * There HAS to be a way to quantify the uncertainty accurately
 
-----
-
-Isothermal titration calorimetry
-================================
-
-* Gives direct access to the thermodynamic properties of a binding reaction, directly related to alchemical free energy calculations!
   
-  * You can obtain both the enthalpy and free energy
-* There is no need for fluorescent scaffolds or tags
-* There HAS to be a way to quantify the uncertainty accurately
-  
-  * And there is! And it is called **Bayesian inference**.
+  * We suggest using *Bayesian inference*.
 
 
 ----
@@ -855,16 +561,55 @@ Isothermal titration calorimetry
 Accurately quantify experimental uncertainty using Bayesian inference.
 ======================================================================
 
-The experimental parameters, θ , can be estimated using Bayes rule:
+The experimental parameters, θ
+
+.. image:: images/colored_parameters.png
+  :width: 50%
+  
+can be estimated using Bayes rule:
 
 .. figure:: images/colored_bayes_rule.png
-  :width: 250px
+  :width: 30%
 
 * **P(θ\|D)** is the *posterior* distribution. The probability of the parameters given the observed data. *This is what we want to know!*
 * **P(D\|θ)** is the *likelihood*. The probability of the observed data, given a single set of parameters.
 * **P(θ)** are *prior* distributions, containing prior information. We can use this to propagate errors such as known errors in reagent concentrations.
 
 ----
+
+Likelihood model of the data
+============================
+
+We assume the injection heats, q\_n are drawn from a normal distribution, with the true heats as a mean, and a variance **σ**.
+
++--------------------------------------+
+| .. image:: images/colored_model.png  |
+|   :width:  40%                       |
+|                                      |
++--------------------------------------+
+| .. image:: images/colored_qn_itc.png |
+|   :width: 50%                        |
+|                                      |
++--------------------------------------+
+| .. image:: images/itc_test2.png      |
+|   :width: 60%                        |
++--------------------------------------+
+
+
+----
+
+Accurately quantify experimental uncertainty using Bayesian inference.
+======================================================================
+
+Our posterior then becomes
+
+.. figure:: images/hl_full_bayes.png
+  :width: 60%
+
+and to estimate the posterior, we can sample from it using techniques like *Markov Chain Monte Carlo* (MCMC).
+
+----
+
 
 Sampling from a posterior distribution using MCMC
 =================================================
@@ -873,125 +618,57 @@ Markov Chain Monte Carlo
 ------------------------
 
 .. figure:: images/mcmc.gif
-  :width: 700px
+  :width: 70%
 
   http://mbjoseph.github.io/blog/2013/09/08/metropolis/
   
 ----
 
+Making our tools accessible as a library
+========================================
 
-Accurately quantify experimental uncertainty using Bayesian inference.
-======================================================================
+The code is already available on github
+---------------------------------------
 
-The ITC model structure
------------------------
+.. image:: images/github.png
+  :width: 70%
 
-.. image:: images/colored_parameters.png
-  
-Thermodynamic parameters include
-  
-  - binding affinity, **ΔG**
-  
-  - enthalpy of binding, **ΔH**
-  
-  - mechanical heats offset, **ΔH0**
-  
-  - concentration of syringe component, **[Xs]**
-  
-  - concentration of cell component, **[Mc]**
-  
-  - noise parameter, **σ**
-
-We use prior distributions **P(θ)** to propagate error estimates in concentrations, and previously obtained data.
-
+https://github.com/choderalab/bayesian-itc
 
 ----
 
-Accurately quantify experimental uncertainty using Bayesian inference.
-======================================================================
-
-The ITC model structure
------------------------
-
-We assume the injection heats, q\_n are drawn from a normal distribution, with the true heats as a mean, and a variance **σ**.
-
-.. image:: images/colored_model.png
-
-+--------------------------------------+
-| .. image:: images/itc_test2.png      |
-|   :width: 550px                      |
-+--------------------------------------+
-
-
-----
-
-Accurately quantify experimental uncertainty using Bayesian inference.
-======================================================================
-
-The experimental parameters, θ , can be estimated using Bayes rule:
-
-.. figure:: images/colored_bayes_rule.png
-  :width: 250px
-
-* **P(θ\|D)** is the *posterior* distribution. The probability of the parameters given the observed data. *This is what we want to know!*
-* **P(D\|θ)** is the *likelihood*. The probability of the observed data, given a single set of parameters.
-* **P(θ)** are *prior* distributions, containing prior information. We can use this to propagate errors such as known errors in reagent concentrations.
-
-----
-
-A preliminary host-guest titration
-==================================
-
-Host-guest data is not very noisy, making it excellent for a quantitative test of our approach.
-
-+--------------------------------------+
-| .. image:: images/itcexp.png         |
-|   :width: 700px                      |
-+--------------------------------------+
-
-
-----
-
-A posterior distribution of the parameters
-==========================================
+The uncertainty in the parameters
+=================================
 
 .. figure:: images/dHmcmc.png
   :width: 700px
   
 ----
 
-A preliminary host-guest titration
-==================================
+Uncertainty in the data
+=======================
 
 Red dots • indicate observed data, violins depict the posterior distribution of each injection.
 The family of models that were sampled are shown as black curves.
 
 +--------------------------------------+
 | .. image:: images/postpredictive.png |
-|   :width: 700px                      |
+|   :width: 70%                        |
 +--------------------------------------+
 
 ----
 
-
-
 Establish a correct quantitative treatment of alchemical free energy calculations for binding of charged ligands
 ================================================================================================================
-Aim 1.
-------
 
-Subaim 1.1:  Develop an accurate approach to quantifying experimental uncertainty in ITC using Bayesian inference.
-..................................................................................................................
+Using the Cucurbit[7]uril host-guest system, we will
 
-Because we need a reliable experimental dataset in order to make a quantitative comparison
+*1.1.* Develop an accurate approach to quantifying experimental uncertainty in ITC using Bayesian inference.
 
-Subaim 1.2: Perform a quantitative comparison of suggested correction models to experiments to establish a correct treatment of charged ligands in alchemical free energy calculations.
-.......................................................................................................................................................................................
-
-Evaluating the charge corrections, testing an alternative (counter ions), comparing to each other and experiment.
-
+*1.2.* Perform a quantitative comparison of suggested correction models to experiment to establish a correct treatment of charged ligands in alchemical free energy calculations.
 
 ----
+
 
 :id: aim2
 
@@ -1001,42 +678,78 @@ Aim 2.
 ------
 
 .. image:: images/alchem_aims_protonation.png
-  :width: 800px
+  :width: 70%
 
 ----
 
 Quantify the magnitude of protonation state effects on binding
 ==============================================================
   
-
-Proteins and many small-molecule drugs contain titratable moieties that can change protonation state upon binding or sample mixtures of protonation states, often in a conformation-dependent manner.
+We do not know every relevant protonation state a priori, and how relevant they are to the binding affinity.
 
 .. figure:: images/protonation.png
-  :width: 700px
+  :width: 90%
     
   *The pH dependent effect in lin-benzoguanines binding to tRNA−guanine transglycosylase*
     
 
 Neeb et al. *J. Med. Chem.*, 2014, 57 (13), pp 5554–5565
 
-----
-
-Protonation states are relevant to kinase inhibitors
-====================================================
-
-* Kinases are hugely important targets for anti cancer drugs.
-
-* Evidence exists that for the binding of imatinib to Abl kinase, pH dependent effects may contribute to the binding affinity, and preliminary data indicates that it is the same for *many other kinase inhibitors*.
-
-
-+---------------------------------------+--------------------------------------------+
-| .. image:: images/inhibitor-pKas.png  | .. image:: images/imatinib_image_curve.png |
-|   :width: 200px                       |   :width: 300px                            |
-+---------------------------------------+--------------------------------------------+
-
-Szakács Z, et al. *J Med Chem* 48, 249–255 (2005)
+.. note::
+  Also known for proteases and... kinases.
 
 ----
+
+Protonation states may vary for kinase inhibitors
+=================================================
+
+Imatinib, a potent inhibitor of Abl kinase
+------------------------------------------
+
+
+.. figure:: images/imatinib_image_curve.png
+  :width: 50%
+
+Szakács, Z. et al. *J Med Chem* 2005, 48, 249–255
+
+.. note::
+  Do not forget to mention that the protonated form of these inhibitors is charged
+
+----
+
+Protonation states may vary for kinase inhibitors
+=================================================
+
+Imatinib, a potent inhibitor of Abl kinase
+------------------------------------------
+
+.. image:: images/imatinib_sites.png
+  :width: 50%
+
+----
+
+Protonation states may vary for kinase inhibitors
+=================================================
+
+Imatinib, a potent inhibitor of Abl kinase
+------------------------------------------
+
+
++--------------------------------------+
+| .. image:: images/imatinib_sites.png |
+|   :width:  30%                       |
+|                                      |
++--------------------------------------+
+| .. image:: images/ima_cycle.png      |
+|  :width: 50%                         |
+|                                      |
++--------------------------------------+
+
+
+Aleksandrov, A and Simonson, T *J Comput Chem* 31,7, pp. 1550–1560 (2010)
+
+----
+
 
 
 Protonation states are relevant to kinase inhibitors
@@ -1046,44 +759,12 @@ Protonation states are relevant to kinase inhibitors
 
 +---------------------------------------+
 | .. image:: images/inhibitor-pKas.png  |
-|   :width: 350px                       |
+|   :width: 80%                         |
 +---------------------------------------+
 
 Preliminary data generated using Epik
 
-
-----
-
-Our aim is to identify kinase systems where protonation state effects influence binding
-=======================================================================================
-
-to quantify the effect of protonation state effects on the binding affinity of kinase inhibitors.
--------------------------------------------------------------------------------------------------
-
-
-----
-
-The standard alchemical free energy approach uses a single protonation state!
-=============================================================================
-
-+------------------------------------------------+
-| .. image:: images/alchemical_intermediates.png |
-|   :width: 750px                                |
-+------------------------------------------------+
-
-Chodera, JD et al. *Curr Opin Struct Biol*, 21:150 (2011)
-
-----
-
-
-
-Quantify the magnitude of protonation state effects on binding
-==============================================================
-Aim 2.
-------
-
-.. image:: images/alchem_aims_protonation.png
-  :width: 800px
+Shelley, JC *J Comput -Aided Mol Des* 21, pp. 681–691 (2007)
 
 ----
 
@@ -1094,34 +775,43 @@ Problems with the standard approach
 
 2. The distribution of protonation states change significantly upon binding
 
-Then the standard approach is **dead wrong**.
+Then the standard approach is **missing contributions of unknown magnitude**.
 
-.. image:: images/histidine.png
-  :width: 400px
-
-
-----
-
-Identify kinase systems where protonation state changes could be important.
-===========================================================================
-
-.. image:: images/humankinome.jpg
-  :width: 400px
-
-Manning, G, http://www.cellsignal.com/common/content/content.jsp?id=kinases
++-----------------------------------+----------------------------------+
+| .. image:: images/histidine.png   | .. image:: images/lapatinib.png  |
+|   :width: 90%                     |   :width: 50%                    |
+|                                   |                                  |
++-----------------------------------+----------------------------------+
 
 ----
+
 
 Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.
 =============================================================================================================
 
-We will perform a survey accross all (human) kinase complexes in the protein databank (PDB)
+Perform a survey accross all (human) kinase complexes in the protein databank (PDB)
 -------------------------------------------------------------------------------------------
 
 .. image:: images/imatinib_sites.png
-  :width: 600px
+  :width: 60%
   
 ----
+
+Our aim is to identify kinase systems where protonation state effects influence binding
+=======================================================================================
+
+to quantify the effect of protonation state effects on the binding affinity of kinase inhibitors.
+-------------------------------------------------------------------------------------------------
+
+* There are 3500+ kinase:inhibitor complex structures in the protein databank.
+
+* Using a simple tool, we want to survey them to narrow down to a set of max 100 complexes that show changes in the protonation state.
+
+* Once identified, we will use alchemical free energy calculations, extended to sample protonation states, and perform experiments to validate them.
+
+
+----
+
 
 Multi-conformation continuum electrostatic (MCCE)
 =================================================
@@ -1178,6 +868,8 @@ We will benchmark small molecule pKa prediction tools against experimental data 
 
 * Using this data, we will benchmark available pKa prediction tools.
 
+Szakács Z, et al. *J Med Chem* 48, 249–255 (2005)
+
 ----
 
 The pKa tools we will consider
@@ -1188,11 +880,6 @@ The pKa tools we will consider
 * Schrodinger’s **Jaguar** provides means of estimating pKa values using quantum mechanical methods.
  
 * **Epik** uses Hammett Taft linear free energy approaches for predicting pKa values.
-
-----
-
-Backup slides for each pKA method
-=================================
 
 ----
 
@@ -1214,23 +901,6 @@ Therefore we can only use it to survey and not to quantify.
 
 ----
 
-We will perform alchemical free energy calculations using a dynamic protonation state scheme
-============================================================================================
-
-We will extend our in house alchemical free energy calculation framework (Yank) to incorporate dynamic protonation states
-
-+-------------------------------------+
-| .. image:: images/dGprotonation.png |
-|   :width: 500px                     |
-|                                     |
-+-------------------------------------+
-
-These calculations will use the pKa predictions provided by our pKa tool of choice.
-
-.. note::
-  Or our experimental estimates, if the pKa tools dont perform well enough.
-
-----
 
 We will use alchemical free energy calculations to quantify
 ===========================================================
@@ -1239,9 +909,11 @@ We will use alchemical free energy calculations to quantify
   * The total free energy of binding
   * The contribution of protonation state changes to the total.
   
+  * We will implement a Monte Carlo titration scheme
+  
   +-------------------------------------+
   | .. image:: images/dGprotonation.png |
-  |   :width: 500px                     |
+  |   :width:      50%                  |
   |                                     |
   +-------------------------------------+
   
@@ -1253,34 +925,31 @@ We will use alchemical free energy calculations to quantify
 ITC experiments to disseminate protonation state effects from binding
 =====================================================================
 
-Using buffers with different ionization enthalpy
-------------------------------------------------
+* We can use *multiple experiments in different buffers* to detect protonation state effects in ITC
 
-In order to detect protonation state effects in ITC, we can perform multiple experiments that have different *ionization enthalpies*.
-This will lead to different magnitude contributions to the binding affinity, which will allow us to detect and quantify net protonation state effects.
+* Because of different *ionization enthalpies*, if a proton is exchanged with the buffer, there will be a different enthalpy of binding.
 
-*missing a figure here*
 
+.. image:: images/buffer_dependency.gif
+  :width: 50%
+
+
+Neeb et al. *J. Med. Chem.*, 2014, 57 (13), pp 5554–5565
+ 
 ----
 
 Quantify the magnitude of protonation state effects on binding
 ==============================================================
-  
-Aim 2.
-------
 
-Subaim 2.1: Benchmark small molecule pKa prediction tools against experimental data for kinase inhibitors.
-..........................................................................................................
-We need reliable pKa estimates of small molecule kinase inhibitors. We will benchmark available tools and compare to experimental data.
-
-
-Subaim 2.2: Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.
-.........................................................................................................................
 We will identify kinase-inhibitor systems that show changes in the populations of protonation states from MCCE calculations.
 
-Subaim 2.3: Dissect the determinants and impact of protonation state effects on binding affinity through free energy calculations and ITC experiments.
-......................................................................................................................................................
-The systems identified will be simulated using alchemical free energy calculations, and we will perform ITC experiments on them.
+*2.1* Benchmark small molecule pKa prediction tools against experimental data for kinase inhibitors.
+
+*2.2* Survey the kinase:inhibitor cocrystal structures for possible protonation state effects in inhibitor binding.
+
+*2.3* Dissect the determinants and impact of protonation state effects on binding affinity through free energy calculations and ITC experiments.
+
+
  
 ----
 
@@ -1290,9 +959,84 @@ Alchemical free energy calculations
 There are deficiencies that need to be addressed before alchemical free energy calculations can be applied widely.
 
 .. image:: images/alchem_aims_multi.png
-  :width: 800px
+  :width: 95%
 
 ----
+
+Binding of multiple ligands to human serum albumin
+==================================================
+
+.. figure:: images/HSA.png
+  :width: 55%
+  
+  A summary of human serum albumin (HSA) crystal structures bound to small molecules.
+
+  Ghuman, J et al. *J Mol Biol* 2005, 353, 38–52
+
+----
+
+Binding of multiple ligands to human serum albumin
+==================================================
+
+.. figure:: images/HSA_drugsites.png
+  :width: 55%
+  
+  A summary of human serum albumin (HSA) crystal structures bound to small molecules.
+
+  Ghuman, J et al. *J Mol Biol* 2005, 353, 38–52
+
+----
+
+Binding of multiple ligands to human serum albumin
+==================================================
+
+.. figure:: images/HSA_extrasites.png
+  :width: 55%
+  
+  A summary of human serum albumin (HSA) crystal structures bound to small molecules.
+
+  Ghuman, J et al. *J Mol Biol* 2005, 353, 38–52
+
+----
+
+Binding of multiple ligands to a single target
+==============================================
+
+Fragment based drug discovery
+-----------------------------
+
++--------------------------------------------------+-------------------------------------------+
+| .. figure:: images/hts.jpg                       | .. figure:: images/fbdd.jpg               |
+|   :width: 70%                                    |   :width: 80%                             |
+|                                                  |                                           |
+|   A conventional high-throughput screening hit.  |   A fragment hit that is later optimized. |
++--------------------------------------------------+-------------------------------------------+
+
+Rees, DC et al. *Nature Reviews Drug Discovery* 2004, 3, 660-67
+
+----
+
+Fragment based drug discovery
+=============================
+
+At high concentrations, multiple fragments can bind to a protein
+----------------------------------------------------------------
+
+The binding of 3 fragments to p38a kinase.
+
++------------------------------------------+--------------------------------------+
+| .. figure:: images/fragment_p38_4ehv.png | .. figure:: images/fragment_4ehv.png |
+|   :width: 40%                            |   :width: 60%                        |
+|                                          |                                      |
+|   PDB: 4EHV                              |   PDB: 0SJ                           |
+|                                          |                                      |
++------------------------------------------+--------------------------------------+
+
+Over B et al. *Nat Chem* 2013 Jan;5(1):21-8
+
+----
+
+
 
 
 Available free energy calculation tools focus on 1:1 interactions!
@@ -1303,56 +1047,34 @@ Available free energy calculation tools focus on 1:1 interactions!
 
 ----
 
-Binding of multiple ligands to a single target
-==============================================
+Binding of multiple ligands to human serum albumin
+==================================================
 
-.. figure:: images/HSA.png
-  :width: 600px
+.. figure:: images/HSA_extrasites.png
+  :width: 55%
   
   A summary of human serum albumin (HSA) crystal structures bound to small molecules.
 
   Ghuman, J et al. *J Mol Biol* 2005, 353, 38–52
-  
-----
-
-
-Binding of multiple ligands to a single target
-==============================================
-
-Fragment based drug discovery
------------------------------
-
-At high concentrations, multiple fragments can bind to a protein
-................................................................
-
-The binding of 3 fragments to p38a kinase.
-
-+------------------------------------------+--------------------------------------+
-| .. figure:: images/fragment_p38_4ehv.png | .. figure:: images/fragment_4ehv.png |
-|   :width: 400px                          |   :width: 200px                      |
-|                                          |                                      |
-|   PDB: 4EHV                              |   PDB: 0SJ                           |
-|                                          |                                      |
-+------------------------------------------+--------------------------------------+
-
-Over B et al. *Nat Chem* 2013 Jan;5(1):21-8
 
 ----
 
 We will use the binding of NSAIDs to HSA as a model system
 ==========================================================
 
-Human serum albumin is
-
-* Cheap (1g for $50)
-* Soluble
-* Binds many known drugs
-
-We will use NSAIDs
-
-* Widely used over-the-counter drugs
-* Commercially available
-* Available as soluble salt forms (important for ITC)
++---------------------------------------------------------+---------------------------------+
+| Human serum albumin is                                  | .. image:: images/aspirin.png   |
+|                                                         |   :width: 50%                   |
+|   * Cheap (1g for $50)                                  |                                 |
+|   * Soluble                                             |                                 |
+|   * Binds many known drugs                              |                                 |
++                                                         +---------------------------------+
+| We will use NSAIDs                                      | .. image:: images/ibuprofen.png |
+|                                                         |   :width: 50%                   |
+|   * Widely used over-the-counter drugs                  |                                 |
+|   * Commercially available                              |                                 |
+|   * Available as soluble salt forms (important for ITC) |                                 |
++---------------------------------------------------------+---------------------------------+
 
 ----
 
@@ -1377,8 +1099,6 @@ We can then calculate the binding cooperativity between different stoichiometric
   :width: 600px
 
 There will be **n+1** non-alchemical states, from 0, to **n** ligands bound.
-
-*make a clearer ladder*
 
 ----
 
@@ -1494,9 +1214,289 @@ Conclusion
 We hope to have addressed each of these issuess adequately, in order to improve the utility of alchemical free energy calculations.
 
 .. image:: images/alchem_aims_red.png
-  :width: 800px
+  :width: 95%
 
 ----
 
 That's all folks!
 =================
+
+It is all about the binding affinity
+====================================
+
+A strong binder maximizes the ratio of complex concentration (**[PL]**) over free protein (**[P]**) and ligand (**[L]**).
+
+This is known as the association constant (**Ka**).
+
++-------------------------------------+
+| .. image:: images/colored_PL.png    |
+|   :width: 300px                     |
++-------------------------------------+
+| .. image:: images/colored_Ka_Kd.png |
+|   :width: 600px                     |
++-------------------------------------+
+
+----
+
+It is all about the binding affinity
+====================================
+
+A strong binder minimizes the ratio of free protein (**[P]**) and ligand (**[L]**) over complex concentration (**[PL]**).
+
+This is known as the dissociation constant (**Kd**), often used synonymously with the binding affinity.
+
++-------------------------------------+
+| .. image:: images/colored_PL.png    |
+|   :width: 300px                     |
++-------------------------------------+
+| .. image:: images/colored_Kd_Ka.png |
+|   :width: 600px                     |
++-------------------------------------+
+
+----
+
+:id: ewald-sum
+
+Ewald summation as a long range electrostatics approxmation
+===========================================================
+
++-------------------------------------------------+-------------------------------------------------------------+
+| .. figure:: images/pbc_ewald.png                | .. figure:: images/ewald.png                                |
+|   :width: 300px                                 |   :width: 300px                                             |
+|                                                 |                                                             |
+|   An infinitely periodic system as a lattice.   |   Charges are additionally described with distributions.    |
++-------------------------------------------------+-------------------------------------------------------------+
+
+.. note::
+  real space part: Ureal = 1/2 sum i=1 to N sum j=1 to N sum \|n\| =0 to infinity (qi qj)/(4pi eps0)  * erfc(alph \|rij + n\|)/ \|rij +n\|
+  
+  reciprocal space part: U_reci = 1/2 sum k \ne 0 sum i=1 to N sum j=1 to N (qi qj)/(4pi eps0)  4 pi^2 /k^2 exp (- k^2/4alph^2) cos(k*rij)
+  
+  subtract self term:  - \alpha/ sqr(pi) sum k=1 to n  q^2_k / (4pi eps0)
+  
+  correction if not tin foil: (2pi)/(3L^3) sum =1 to N (qi/(4pi eps0) ri )^2
+  
+
+----
+
+:id: rocklin
+
+Rocklin charge correction model
+===============================
+
+.. figure:: images/rocklinpbsa.png
+  :width: 400px
+  
+Poisson Boltzman calculations between a reference state (ligand in constant electric medium),
+and the real state (ligand in solvent cavity).
+
+----
+
+:id: reif
+
+Reif-Oostenbrink
+================
+
+Calculate the corrections in a thermodynamic cycle
+
+.. figure:: images/reif.png
+  :width: 300px
+  
+----
+
+Lin model
+=========
+
+.. figure:: images/linmodel.png
+  :width: 300px
+
+:id: lin
+
+----
+
+Weak binding of fragments
+=========================
+
+Consequences of the strong binding approximation
+------------------------------------------------
+
++---------------------------------------+-----------------------------------+
+| .. figure:: images/gilson.png         | .. figure:: images/squarewell.png |
+|   :width: 400px                       |   :width: 300px                   |
++---------------------------------------+-----------------------------------+
+| .. figure:: images/strong_binding.png |                                   |
+|   :width: 400px                       |                                   |
++---------------------------------------+-----------------------------------+
+
+----
+
+
+:id: alchemical
+
+Alchemical free energy calculations
+===================================
+
+Why?
+----
+
+They allow efficient sampling of the relevant states of protein-ligand complexes.
+
+.. image:: images/colored_PL.png
+  :width: 30%
+  
+All you really need to sample are the *end states*!
+
+www.alchemistry.org
+
+
+----
+
+:id: alchem-intermediates
+
+Alchemical free energy calculations
+===================================
+
+Alchemical methods allow for phase space overlap
+------------------------------------------------
+
++--------------------------------------+--------------------------------------+
+| .. figure:: images/normal_states.png | .. figure:: images/alchem_states.png |
+|   :width: 90%                        |   :width:  90%                       |
++--------------------------------------+--------------------------------------+
+| .. figure:: images/colored_zwanzig.png                                      |
+|   :width: 60%                                                               |
++-----------------------------------------------------------------------------+
+
+Wu, D and Kofke, DA *J Chem Phys* 123: 054103 (2005).
+
+Zwanzig, RW, *J Chem Phys* 22, 1420 (1954)
+
+.. note::
+  You can interpret the equation as follows. We sample from state A, but use this to sample state B.
+  To unbias the samples, we remove a factor of exp(-beta U_A), and reweight by adding a factor of exp(-beta U_B).
+  If you sample A, the states might correspond to mostly high energy states in b, where the exponent of -U_B is very small,
+  meaning little contribution to the free energy. Therefore, your estimate converges very slowly.
+
+----
+
+:id: ewald-detailed
+
+
+Ewald summation
+===============
+
+Neutralizing the system charge
+------------------------------
+
+There is an effective system neutralizing charge, called jellium/gellium.
+
+This system wide charge density ρ depends on the box size, L.
+
++-------------------------------------------------+-------------------------------------------------------------------+
+| .. figure:: images/pbc_ewald.png                | .. figure:: images/colored_gellium.png                            |
+|   :width: 300px                                 |   :width: 400px                                                   |
+|                                                 |                                                                   |
+|   An infinitely periodic system as a lattice.   |   The charge density in the system is a function of the box size. |
++-------------------------------------------------+-------------------------------------------------------------------+
+
+Here, **k** stands for the different boxes in the lattice, and **i** indicates individual point charges **q\_i**, with their position vectors **r⃗**.
+
+----
+
+:id: parameters
+
+Accurately quantify experimental uncertainty using Bayesian inference.
+======================================================================
+
+The ITC model structure
+-----------------------
+
+.. image:: images/colored_parameters.png
+  
+Thermodynamic parameters include
+  
+  - binding affinity, **ΔG**
+  
+  - enthalpy of binding, **ΔH**
+  
+  - mechanical heats offset, **ΔH0**
+  
+  - concentration of syringe component, **[Xs]**
+  
+  - concentration of cell component, **[Mc]**
+  
+  - noise parameter, **σ**
+
+We use prior distributions **P(θ)** to propagate error estimates in concentrations, and previously obtained data.
+
+
+----
+
+
+Protonation states may vary for kinase inhibitors
+=================================================
+
+EGFR inhibitors lapatinib and gefitinib
+---------------------------------------
+
++----------------------------------+----------------------------------+
+| .. figure:: images/lapatinib.png | .. figure:: images/gefitinib.png |
+|   :width: 80%                    |   :width: 80%                    |
+|                                  |                                  |
+|   Lapatinib                      |   Gefitinib                      |
++----------------------------------+----------------------------------+
+
+Many FDA approved kinase inhibitors have titratable moieties with pKas near 7.
+
+(image source: www.chemicalize.org)
+
+.. note::
+
+  These two drugs are EGFR/Her2 inhibitors, important in lung and breast cancers
+  (Non small cell lung cancer)
+  
+----
+
+
+Quantify the magnitude of protonation state effects on binding
+==============================================================
+
+It is known for several well-studied systems that protonation states make a large difference.
+
+.. figure:: images/cz_hiv.jpg
+  :width: 50%
+
+  *HIV protease inhibitors induce protonation state changes in active site aspartate residues.*
+
+----
+
+
+Protonation states are relevant to kinase inhibitors
+====================================================
+
+* Kinases are hugely important targets for anti cancer drugs.
+
+* Evidence exists that for the binding of imatinib to Abl kinase, pH dependent effects may contribute to the binding affinity, and preliminary data indicates that it is the same for *many other kinase inhibitors*.
+
+
++---------------------------------------+--------------------------------------------+
+| .. image:: images/inhibitor-pKas.png  | .. image:: images/imatinib_image_curve.png |
+|   :width: 40%                         |   :width: 50%                              |
++---------------------------------------+--------------------------------------------+
+
+Szakács Z, et al. *J Med Chem* 48, 249–255 (2005)
+
+----
+
+Docking can provide enrichment in top 10 scores
+===============================================
+
+.. image:: images/enrichment.gif
+  :width: 70%
+
+Warren et al. *J Med Chem* 49 (20), pp 5912–5931 (2006)
+
+
+----
+
+This slide is intentionally left blank.
